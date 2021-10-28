@@ -1,8 +1,8 @@
-## 用户文档
+# 用户文档
 
 一般来说，鉴于图形界面类型的 `mirai-console` 不稳定，我推荐使用纯控制台版本。
 
-### 检查 Java
+# 检查 Java
 
 首先，你需要确保运行 `mirai` 的系统上安装有  `java`。首先我们要打开命令窗口。
 
@@ -16,7 +16,7 @@
 
 如果你安装了 java 仍出现“不是有效的命令…”之类的提示，请到搜索引擎搜索关键字`jdk 环境变量配置` 搜寻相关教程
 
-### 选择启动方式
+# 选择启动方式
 
 目前要启动 `mirai-console` 有 **原始启动法** 和 **启动器启动法** 两种方法。
 
@@ -28,7 +28,7 @@
 
 **在 Windows 下: 所有操作都需要在关闭“隐藏已知文件类型的扩展名”后进行**
 
-#### 原始启动法
+## 原始启动法
 
 先前往 [maven 仓库](https://mvnrepository.com/) 搜索并下载以下几个库，格式是`.jar`，版本要对应：
 
@@ -47,13 +47,13 @@ java -cp ./libraries/* net.mamoe.mirai.console.terminal.MiraiConsoleTerminalLoad
 pause
 ```
 
-#### 启动器启动法
+## 启动器启动法
 
 先前往 [MCL 发布地址](https://github.com/iTXTech/mirai-console-loader/releases) 下载最新版启动器，一般点击 `Assets` 下面的 `mcl-*.*.*.zip` 即可
 
 将下载的文件解压到你记得的地方，然后双击打开文件 `mcl.cmd` (在 Linux 系统是 执行 `./mcl`，下同) 即可。
 
-##### 出现错误
+### 出现错误
 
 若错误提示前面部分有 `java.lang.UnsupportedClassVersionError` 字样，请确保你已安装 `jdk11`
 
@@ -83,7 +83,7 @@ set JAVA_BINARY="C:\Program Files\Java\jdk-11.0.13\bin\java.exe"
 
 改好后再次双击打开文件 `mcl.cmd` 即可
 
-### 登录
+# 登录
 
 在启动 `mirai` 之后，你将进行最麻烦的操作，就是登录。
 
@@ -120,7 +120,7 @@ set JAVA_BINARY="C:\Program Files\Java\jdk-11.0.13\bin\java.exe"
 
 如果还是出现错误，请根据前文描述来排查问题。实在无法解决可以先去[论坛](https://mirai.mamoe.net/)问问。
 
-### 实现功能
+# 实现功能
 
 本部分更偏向于用户，如果你是开发者请去阅读[开发文档](dev.md)。
 
@@ -134,14 +134,13 @@ set JAVA_BINARY="C:\Program Files\Java\jdk-11.0.13\bin\java.exe"
 
 > 与**大部分**`酷Q`插件兼容，**不支持**`CPK`和解包的`DLL`，需获取`DLL`和`JSON`原文件，`JSON`文件**不支持**注释。
 
-
-
-## 结尾
+# 结尾
 
 至此，用户文档已到结尾，虽然不编程也能玩 `mirai`，但是具有局限性。
 
 如果你对使用 `mirai` 编写一个机器人感兴趣并具有极客精神，这或许是你学习编程的一个好机会，选择好你想要学的语言，从菜鸟教程开始吧！
 
-[Kotlin 教程 | 菜鸟教程](https://www.runoob.com/kotlin/kotlin-tutorial.html) (推荐)
+[Kotlin 教程 | 菜鸟教程](https://www.runoob.com/kotlin/kotlin-tutorial.html) **<font color=#FF0000>(推荐)</font>**
 
 [Java 教程 | 菜鸟教程](https://www.runoob.com/java/java-tutorial.html)
+
