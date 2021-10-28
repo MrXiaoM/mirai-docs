@@ -142,6 +142,9 @@ set JAVA_BINARY="C:\Program Files\Java\jdk-11.0.13\bin\java.exe"
 
 如果你对使用 `mirai` 编写一个机器人感兴趣并具有极客精神，这或许是你学习编程的一个好机会，选择好你想要学的语言，从菜鸟教程开始吧！
 
+[Kotlin 语言中文站](https://www.kotlincn.net/) **(推荐)**
+
 [Kotlin 教程 | 菜鸟教程](https://www.runoob.com/kotlin/kotlin-tutorial.html) **(推荐)**
 
 [Java 教程 | 菜鸟教程](https://www.runoob.com/java/java-tutorial.html)
+
