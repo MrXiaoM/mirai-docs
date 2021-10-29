@@ -114,7 +114,7 @@ set JAVA_BINARY="C:\Program Files\Java\jdk-11.0.13\bin\java.exe"
 
 接着回到 `mirai-console` 所在文件夹(上文“选择启动方式”中提到的 `mirai` 文件夹或者mcl解压路径)
 
-如果文件夹里有 `device.json`1 就把手机发过来的 `device.json` 覆盖过去。(注1: 在更旧版本的 `mirai` 中，`device.json` 也叫做 `deviceInfo.json`)
+如果文件夹里有 `device.json` 就把手机发过来的 `device.json` 覆盖过去。(注: 在更旧版本的 `mirai` 中，`device.json` 也叫做 `deviceInfo.json`)
 
 如果文件夹里没有 `device.json` 而有 `bots` 文件夹，那就打开 `bots` 文件夹里以QQ号命名的文件夹，把手机发过来的 `device.json` 覆盖过去。
 
@@ -128,7 +128,7 @@ set JAVA_BINARY="C:\Program Files\Java\jdk-11.0.13\bin\java.exe"
 
 在登录QQ到 `mirai` 之后，你就可以到论坛搜寻现成的插件来享受`mirai`带来的便利了
 
-论坛里的插件发布板块：https://mirai.mamoe.net/category/11
+论坛里的插件发布板块：[https://mirai.mamoe.net/category/11](https://mirai.mamoe.net/category/11)
 
 除了论坛以外，不要忘记还有互联网中**四处散落的资源**，它们有些可能还**没有被整合**，等着你去探索。
 
