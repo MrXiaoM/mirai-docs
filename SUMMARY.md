@@ -4,3 +4,4 @@
 * [目录](docs/README.md)
   * [开发文档](docs/dev.md)
   * [用户文档](docs/noob.md)
+* [BlocklyMirai 帮助](blocklymirai.md)

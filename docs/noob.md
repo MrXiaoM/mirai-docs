@@ -49,6 +49,14 @@ java -cp ./libraries/* net.mamoe.mirai.console.terminal.MiraiConsoleTerminalLoad
 pause
 ```
 
+注：如果出现了 java.security.NoSuchProviderException: JCE cannot authenticate the provider 异常
+
+>  此原因为 mirai 使用 shadowJar 打包后, 没有签名导致, 解决方法为在运行时路径添加 `org.bouncycastle:bcprov-jdk15on`, 并确保该库第一个加载 (即保证该库比 `mirai-core-all` 先加载)
+>
+> [https://search.maven.org/search?q=g:org.bouncycastle AND a:bcprov-jdk15on](https://search.maven.org/search?q=g:org.bouncycastle AND a:bcprov-jdk15on)
+
+这个异常并不影响 `mirai` 的正常运行，如果你看它不顺眼可以在上面的链接下载那个库，一样丢到 `libraries` 文件夹，注意，这个库在文件夹里必须要按名称排序排在第一位，如果你下载的文件都没有改过名可以不用管顺序。mcl 会自动下载这个库，所以用启动器启动法可以不用管这些零零碎碎的问题。
+
 ### 启动器启动法
 
 先前往 [MCL 发布地址](https://github.com/iTXTech/mirai-console-loader/releases) 下载最新版启动器，一般点击 `Assets` 下面的 `mcl-*.*.*.zip` 即可
@@ -104,7 +112,7 @@ set JAVA_BINARY="C:\Program Files\Java\jdk-11.0.13\bin\java.exe"
 | 禁止登录     | 需要处理滑块验证码 | [project-mirai/mirai-login-solver-selenium](https://github.com/project-mirai/mirai-login-solver-selenium) |
 | 密码错误     | 密码错误或过长   | 手机协议最大支持 16 位密码 ([#993](https://github.com/mamoe/mirai/discussions/993)). 在官方 PC 客户端登录后修改密码               |
 
-有关无法登录的解决方案，[可以前往论坛查看](https://mirai.mamoe.net/topic/223)。
+【重要】有关无法登录的解决方案，[可以前往论坛查看](https://mirai.mamoe.net/topic/223)。**论坛的方法会更新，请随时留意**
 
 目前要处理滑动验证码，请确保你有一台已登录移动端QQ并且可扫码的设备和一台**安卓手机**，当然**只有一台安卓手机也是可以的**，在该安卓手机上下载并安装 [mzdluo123/MiraiAndroid](https://github.com/mzdluo123/MiraiAndroid) (2021/9/6更新的下载地址: [https://install.appcenter.ms/users/mzdluo123/apps/miraiandroid/distribution\_groups/release](https://install.appcenter.ms/users/mzdluo123/apps/miraiandroid/distribution\_groups/release))
 
@@ -120,6 +128,14 @@ set JAVA_BINARY="C:\Program Files\Java\jdk-11.0.13\bin\java.exe"
 
 在替换好文件之后，再次打开 `mirai-console`，执行命令 `login QQ号 密码` 如果出现 `Login successfully` 就算成功了，你可以进入下一步了。
 
+**如果你身边没有安卓手机或者MiraiAndroid安装后不可用，又或者你正在使用苹果系列的手机**
+
+> **10-29**
+> 如果你正在使用苹果系列的手机，使用最原始的方法来解决滑动验证码
+>
+> [https://github.com/project-mirai/mirai-login-solver-selenium](https://github.com/project-mirai/mirai-login-solver-selenium)
+> [https://docs.mirai.mamoe.net/mirai-login-solver-selenium/](https://docs.mirai.mamoe.net/mirai-login-solver-selenium/)
+
 如果还是出现错误，请根据前文描述来排查问题。实在无法解决可以先去[论坛](https://mirai.mamoe.net)问问。
 
 ## 实现功能
@@ -130,7 +146,9 @@ set JAVA_BINARY="C:\Program Files\Java\jdk-11.0.13\bin\java.exe"
 
 论坛里的插件发布板块：[https://mirai.mamoe.net/category/11](https://mirai.mamoe.net/category/11)
 
-除了论坛以外，不要忘记还有互联网中**四处散落的资源**，它们有些可能还**没有被整合**，等着你去探索。
+[BlocklyMirai](https://mirai.mamoe.net/topic/784) 现已发布，你可以用它来免代码编写qq机器人，只需要跟“积木编程”一样拖动积木块，但它目前还处于 Alpha 测试阶段，积木块并不全面，你可以先了解下，之后完善了再使用。
+
+除了论坛以外，不要忘记还有互联网中**四处散落的资源**，它们有些可能还**没有被整合**，等着你去[探索](https://www.baidu.com/)。
 
 顺便一提，[iTXTech/mirai-native](https://github.com/iTXTech/mirai-native) 可以加载酷Q插件
 
