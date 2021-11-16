@@ -4,7 +4,7 @@ description: 本文档只讲比较基础/浅层的部分，若需深入还是需
 
 # 开发文档
 
-文档编写者 MrXiaoM 更倾向于 java 开发，如果本文档提供的 kotlin 代码有错请反馈，谢谢
+文档编写者 MrXiaoM 更倾向于 java 开发，如果本文档提供的 kotlin 代码有错请反馈，有些示例可能没有贴出 kotlin 代码，望理解
 
 ## 在开发之前
 
@@ -36,6 +36,8 @@ description: 本文档只讲比较基础/浅层的部分，若需深入还是需
 
 我比较推荐写 `mirai-console` 插件，在这里不教如何写 `mirai-core` 衍生程序了，因为只需要直接跳过，从[登录机器人](dev.md#登录机器人)部分开始看即可。
 
+官方文档指北：[配置 Mirai Console 项目](https://github.com/mamoe/mirai-console/blob/master/docs/ConfiguringProjects.md)
+
 如果你要新建 `mirai-console` 插件项目，你可以去 clone 这个模板项目 [project-mirai/mirai-console-plugin-template](https://github.com/project-mirai/mirai-console-plugin-template) 或者直接用 [mirai-console 的 Gradle 插件](https://plugins.gradle.org/plugin/net.mamoe.mirai-console) 并直接从[插件启用时](dev.md#插件启用时)部分开始看即可。
 
 朴素的方法：新建项目后，先将下面这老三样作为库导入到项目，
@@ -50,9 +52,22 @@ mirai-console-terminal
 
 这几个库在 [maven 仓库](https://mvnrepository.com) 都可以搜索到。
 
+其实 `mirai-console-terminal` 导不导没多大影响，看自己需求。如果你要在 maven 仓库下载 .jar 包的话，前两个**必须要下载文件名里版本后面有 -all 结尾**的文件，如 `mirai-core-all-2.8.0-all.jar`
+
+```buildscript
+// 你可以直接复制下面的内容来快速导入 2.8.0 到你的 gradle 项目中
+// build.gradle
+dependencies {
+	implementation 'net.mamoe:mirai-core-all:2.8.0:all'
+    implementation 'net.mamoe:mirai-console:2.8.0:all'
+}
+```
+
 ## 编写插件特征
 
 **使用模板项目或者 Gradle 插件大可免除这步，详见上文**
+
+官方文档指北：[手动配置主类服务](https://github.com/mamoe/mirai-console/blob/master/docs/Plugins.md#%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AE%E4%B8%BB%E7%B1%BB%E6%9C%8D%E5%8A%A1)
 
 既然是 `mirai-console` 的插件，那就需要让 `mirai-console` 把你编译的 jar 给认出来。
 
@@ -66,6 +81,8 @@ top.mrxiaom.itisme.Natsuko
 
 然后创建一个类，包名和类名如上，自己取名。让这个类继承 `JavaPlugin` 或者 `KotlinPlugin`，再填写插件相关信息即可。
 
+官方文档指北：[主类的完整示例](https://github.com/mamoe/mirai-console/blob/master/docs/Plugins.md#手动配置主类服务)
+
 在 Java 要**新建一个无参数的构造函数**并在里面将插件描述补上，**必须要无参数**的构造函数，并使用公开静态字段将其实例化。
 
 Java:
@@ -77,7 +94,7 @@ public class Natsuko extends JavaPlugin {
         super(new JvmPluginDescriptionBuilder(
             // 插件ID
             "top.mrxiaom.testplugin",
-        	// 版本
+            // 版本
             "1.0.0"
         )
         // 插件名
@@ -119,6 +136,8 @@ object Natsuko : KotlinPlugin(
 
 在你的插件被启用时，将会调用**主类**的 `onEnable` 方法，同理在插件被加载时会调用**主类**的 `onLoad` 方法，自行重写即可。
 
+官方文档指北：[加载 onLoad](https://github.com/mamoe/mirai-console/blob/master/docs/Plugins.md#%E5%8A%A0%E8%BD%BD) | [启用 onEnable](https://github.com/mamoe/mirai-console/blob/master/docs/Plugins.md#%E5%90%AF%E7%94%A8) | [禁用 onDisable](https://github.com/mamoe/mirai-console/blob/master/docs/Plugins.md#%E7%A6%81%E7%94%A8)
+
 ## 登录机器人
 
 如果你是使用 `mirai-console` 且不需要或者已有自动登录，你不需要看这一部分
@@ -127,31 +146,31 @@ object Natsuko : KotlinPlugin(
 
 (代码中qq号和密码均为玩梗，请勿当真)
 
-java:
+官方文档指北: [创建和配置 bot](https://github.com/mamoe/mirai/blob/dev/docs/Bots.md#1-%E5%88%9B%E5%BB%BA%E5%92%8C%E9%85%8D%E7%BD%AE-bot)
 
 ```java
+// java:
 // BotFactory.INSTANCE.newBot(qq, 密码, 选项);
 Bot bot = BotFactory.INSTANCE.newBot(114514L, "1919810", new BotConfiguration() {
-	{
-		// 使用平板协议登录
-		setProtocol(MiraiProtocol.ANDROID_PAD);
-		// 指定设备信息文件路径，文件不存在将自动生成一个默认的，存在就读取
-		fileBasedDeviceInfo("deviceInfo_114514.json");
-		// 更多操作自己看代码补全吧
-	}
+    {
+        // 使用平板协议登录
+        setProtocol(MiraiProtocol.ANDROID_PAD);
+        // 指定设备信息文件路径，文件不存在将自动生成一个默认的，存在就读取
+        fileBasedDeviceInfo("deviceInfo_114514.json");
+        // 更多操作自己看代码补全吧
+    }
 });
 ```
 
-kotlin:
-
 ```kotlin
+// kotlin:
 // BotFactory.newBot(qq, 密码)
 val bot = BotFactory.newBot(114514L, "1919810") {
-	// 使用平板协议登录
-	setProtocol(MiraiProtocol.ANDROID_PAD);
-	// 指定设备信息文件路径，文件不存在将自动生成一个默认的，存在就读取
-	fileBasedDeviceInfo("deviceInfo_114514.json");
-	// 更多操作自己看代码补全吧
+    // 使用平板协议登录
+    setProtocol(MiraiProtocol.ANDROID_PAD);
+    // 指定设备信息文件路径，文件不存在将自动生成一个默认的，存在就读取
+    fileBasedDeviceInfo("deviceInfo_114514.json");
+    // 更多操作自己看代码补全吧
 };
 ```
 
@@ -182,20 +201,20 @@ Bot.getInstance(114514L);
 
 获取单机器人事件通道：
 
-```
+```java
 // Java: bot.getEventChannel();
 // Kotlin: bot.eventChannel
 ```
 
 选择好通道，**并将下面代码中的 channel 替换成你获取的通道**，如
 
-```
+```java
 channel.registerListenerHost(xwx);
 ```
 
 在 java，你选择公共事件通道时应该替换为
 
-```
+```java
 GlobalEventChannel.INSTANCE.registerListenerHost(xwx);
 ```
 
@@ -207,17 +226,16 @@ GlobalEventChannel.INSTANCE.registerListenerHost(xwx);
 
 [在 `EventChannel` 监听事件](https://github.com/mamoe/mirai/blob/dev/docs/Events.md#在-eventchannel-监听事件)
 
-java:
-
 ```java
+// java:
 // channel.subscribeAlways(事件类, 方法);
 // 示例：收到好友消息
 channel.subscribeAlways(FriendMessageEvent.class, event -> { 
-	// 做些什么，比如
+    // 做些什么，比如
     // 你发送好友消息“你好”给机器人，机器人就会回复你“Hello Mirai :)”
     // 不要着急，有关消息发送的内容会在下一部分讲
     if(event.getMessage().contentToString().equals("你好")) {
-    	event.getSubject().sendMessage("Hello Mirai :)");
+        event.getSubject().sendMessage("Hello Mirai :)");
     }
 });
 // 你也可以像这样
@@ -226,14 +244,13 @@ public void onEnable(){
 }
 private void onFriendMessage(FriendMessageEvent event){
     if(event.getMessage().contentToString().equals("你好")) {
-    	event.getSubject().sendMessage("Hello Mirai :)");
+        event.getSubject().sendMessage("Hello Mirai :)");
     }
 }
 ```
 
-kotlin:
-
 ```kotlin
+// kotlin:
 // channel.subscribeAlways<事件类> { 方法 };
 channel.subscribeAlways<FriendMessageEvent> { event ->
     // 此处的 this 和 event 都是事件的实例
@@ -245,6 +262,8 @@ channel.subscribeAlways<FriendMessageEvent> { event ->
 
 ## 监听一个类里所有事件
 
+官方文档指北: [使用 `@EventHandler` 注解标注的方法监听事件](https://github.com/mamoe/mirai/blob/dev/docs/Events.md#使用-eventhandler-注解标注的方法监听事件)
+
 这种方法可以非常大量地监听事件，当你懒得再去找通道注册部分代码的时候可以用这个方法。
 
 先要新建一个类，使其继承 `SimpleListenerHost`(推荐)，或者实现` ListenerHost `，然后在那个类里面写带单个参数的方法，参数的类型要是事件类型，并且方法要加上 `@EventHandler` 注解。如果你想要在执行事件时停止监听事件，需要返回值类型要为 `ListeningStatus`并返回 `ListeningStatus.STOPPED`。代码如下所示
@@ -254,15 +273,15 @@ channel.subscribeAlways<FriendMessageEvent> { event ->
 ```java
 public class EventHost extends SimpleListenerHost{
     // 所有方法类型
-	// T 表示任何 Event 类型.
-	// void onEvent(T)
-	// Void onEvent(T)
-	// ListeningStatus onEvent(T) // 禁止返回 null
+    // T 表示任何 Event 类型.
+    // void onEvent(T)
+    // Void onEvent(T)
+    // ListeningStatus onEvent(T) // 禁止返回 null
     @EventHandler
     private void onFriendMessage(FriendMessageEvent event){
         if(event.getMessage().contentToString().equals("你好")) {
-    		event.getSubject().sendMessage("Hello Mirai :)");
-    	}
+            event.getSubject().sendMessage("Hello Mirai :)");
+        }
     }
 }
 ```
@@ -271,31 +290,31 @@ public class EventHost extends SimpleListenerHost{
 
 ```kotlin
 object EventHost : SimpleListenerHost {
-	// 所有函数参数, 函数返回值都不允许标记为可空 (带有 '?' 符号)
-	// T 表示任何 Event 类型.
-	// suspend fun T.onEvent(T)
-	// suspend fun T.onEvent(T): ListeningStatus
-	// suspend fun T.onEvent(T): Nothing
-	// suspend fun onEvent(T)
-	// suspend fun onEvent(T): ListeningStatus
-	// suspend fun onEvent(T): Nothing
-	// suspend fun T.onEvent()
-	// suspend fun T.onEvent(): ListeningStatus
-	// suspend fun T.onEvent(): Nothing
-	// fun T.onEvent(T)
-	// fun T.onEvent(T): ListeningStatus
-	// fun T.onEvent(T): Nothing
-	// fun onEvent(T)
-	// fun onEvent(T): ListeningStatus
-	// fun onEvent(T): Nothing
-	// fun T.onEvent()
-	// fun T.onEvent(): ListeningStatus
-	// fun T.onEvent(): Nothing
+    // 所有函数参数, 函数返回值都不允许标记为可空 (带有 '?' 符号)
+    // T 表示任何 Event 类型.
+    // suspend fun T.onEvent(T)
+    // suspend fun T.onEvent(T): ListeningStatus
+    // suspend fun T.onEvent(T): Nothing
+    // suspend fun onEvent(T)
+    // suspend fun onEvent(T): ListeningStatus
+    // suspend fun onEvent(T): Nothing
+    // suspend fun T.onEvent()
+    // suspend fun T.onEvent(): ListeningStatus
+    // suspend fun T.onEvent(): Nothing
+    // fun T.onEvent(T)
+    // fun T.onEvent(T): ListeningStatus
+    // fun T.onEvent(T): Nothing
+    // fun onEvent(T)
+    // fun onEvent(T): ListeningStatus
+    // fun onEvent(T): Nothing
+    // fun T.onEvent()
+    // fun T.onEvent(): ListeningStatus
+    // fun T.onEvent(): Nothing
     // 所有 Kotlin 非 suspend 的函数都将会在 Dispatchers.IO 中调用
     @EventHandler
     suspend fun FriendMessageEvent.onFriendMessage() {
         if(message.contentToString().equals("你好")){
-        	subject.sendMessage("Hello Mirai :)")
+            subject.sendMessage("Hello Mirai :)")
         }
     }
 }
@@ -303,7 +322,7 @@ object EventHost : SimpleListenerHost {
 
 然后，再去注册监听器即可
 
-```
+```java
 // channel.registerListenerHost(类实例);
 // Java: channel.registerListenerHost(new EventHost());
 // Kotlin: channel.registerListenerHost(EventHost);
@@ -311,17 +330,19 @@ object EventHost : SimpleListenerHost {
 
 注解 @EventHandler 是附带参数的
 
-```
+```java
 @EventHandler(priority = 优先级, concurrency = 并发索引, ignoreCancelled = 是否允许事件被取消)
 ```
+全都是可选参数。跟上面的例子一样，你直接 `@EventHandler` 都是没问题的
 
-优先级
+[事件优先级](https://github.com/mamoe/mirai/blob/dev/mirai-core-api/src/commonMain/kotlin/event/Listener.kt#L100) 的注释：在广播时, 事件监听器的调用顺序为 (从左到右):
 
-## 生成消息
+[HIGHEST] -> [HIGH] -> [NORMAL] -> [LOW] -> [LOWEST] -> [MONITOR]
 
-如需深入探究，请见 [mirai 开发文档](https://github.com/mamoe/mirai/blob/dev/docs/Messages.md)
-
-// TODO 敬请期待
+ - 使用 [MONITOR] 优先级的监听器将会被**并行**调用.
+ - 使用其他优先级的监听器都将会**按顺序**调用.
+因此一个监听器的挂起可以阻塞事件处理过程而导致低优先级的监听器较晚处理.
+当事件被 使用 `Event.intercept()` 拦截后, 优先级较低 (靠右) 的监听器将不会被调用.
 
 ## 联系人&发送消息
 
@@ -339,7 +360,7 @@ object EventHost : SimpleListenerHost {
 
 ### 机器人主动获取
 
-```
+```java
 // 获取好友 bot.getFriend(qq);
 // 获取群聊 bot.getGroup(群号);
 ```
@@ -348,7 +369,7 @@ object EventHost : SimpleListenerHost {
 
 你肯定有注意到，一些事件里面会有 `event.getGroup()`，`event.getFriend()`，`event.getSender()` 之类的方法，它们就是用来获取联系人的
 
-在 kotlin，由于 this 就是事件，可以直接用 `group`，`friend`，`sender`
+在 kotlin，可以直接用 `event.group`，`event.friend`，`event.sender`
 
 ----
 
@@ -356,9 +377,88 @@ object EventHost : SimpleListenerHost {
 
 要发送消息非常简单 `contact.sendMessage(消息);`
 
-消息不仅可以用上文提到的方法生成，也可以直接用字符串，就像“监听事件”部分的例子那样。
+消息不仅可以用**下文提到的方法**生成，也可以直接用字符串，就像“监听事件”部分的例子那样。详细请见下一部分
 
-如果你有仔细看各个联系人实例的代码补全，你会发现还有很多可以获取或者操作的内容，上一部分没有讲的“如何发送图片”就在这些操作中，首先你需要先用 `contact.uploadImage(图片)` 把图片上传到服务器，这个方法的返回值就是图片，要在消息中插入图片把它加进消息链 (MessageChain) 中即可。或者你可以直接用 `contact.sendMessage(图片);` 来发送。但是你会发现 `uploadImage` 的参数类型是 `ExternalResource`，那么我们要怎么指定图片呢？代码如下，上传并发送的例子
+如果你有仔细看各个联系人实例的代码补全，你会发现还有很多可以获取或者操作的内容
+
+## 生成消息
+
+如需深入探究，请见 [mirai 开发文档](https://github.com/mamoe/mirai/blob/dev/docs/Messages.md)
+
+在发送消息时，你可以发送**消息元素**、**消息链**或者**字符串**，这部分将会讲如何生成各类消息
+
+### 工具: 消息链构建器 MessageChainBuilder
+
+这是个内置的消息链工具类，`MessageChainBuilder msg = new MessageChainBuilder();`
+
+要往里面添加消息元素(如何实例化消息元素会在后面说到)，只需要
+
+````java
+// 在最后追加消息(Message、SignleMessage)，可以追加字符串
+builder.add(消息元素);
+// 在某处插入消息(SignleMessage)，如果要追加字符串，请追加消息元素 new PlainText("消息");
+builder.add(索引, 消息元素);
+// 添加列表(Collection)里所有消息，同上
+builder.addall(消息元素列表);
+// 同上
+builder.addall(索引, 消息元素列表);
+````
+
+要发送给某人的时候，用 `msg.build()` 来构建消息链，示例如下
+
+```java
+MessageChainBuilder builder = new MessageChainBuilder();
+builder.add(new At(2431208142L));
+builder.add("Hello Mirai :)");
+// 构建出来的消息: @MrXiaoM Hello Mirai :)
+MessageChain msg = builder.build();
+// 要发送消息，上一部分说了
+contact.sendMessage(msg);
+```
+
+### 不用构建器也可以
+
+你可以使用消息类中的 `.plus(消息)` 方法来**拼接消息元素**，下面是例子
+
+```java
+// @MrXiaoM Hello Mirai :)
+MessageChain msg1 = new At(2431208142L).plus("Hello Mirai :)");
+// 你好 @MrXiaoM
+MessageChain msg2 = new PlainText("你好 ").plus(new At(2431208142L));
+
+contact.sendMessage(msg1);
+// contact.sendMessage(msg2);
+```
+
+注意：**在 java 拼接消息不能用加号**，比如 At 和字符串，如果用加号，At 等消息会被转换成字符串，发送出去将不会 At 到人。你可以理解成要用 `String.equals(String)` 而不是 `String == String`
+
+```
+// java:
+// 错误示范:
+contact.sendMessage(new At(2431208142L) + "测试");
+// 正确示范:
+contact.sendMessage(new At(2431208142L).plus("测试"));
+```
+
+### 实例化消息元素
+
+在上面的部分你已经学会如何把各种消息拼起来了，[消息元素的列表在这里](https://github.com/mamoe/mirai/blob/dev/docs/Messages.md#%E6%B6%88%E6%81%AF%E5%85%83%E7%B4%A0)，点击相应的链接即可查看消息元素的源代码，看看构造函数就知道如何将其实例化了。这里提一下常用例子或者比较特殊的类型，比如需要上传或者用构建器构建的。
+
+#### 常用消息元素
+
+```java
+new PlainText("正常字符串")
+new At(114514L) // @某人
+AtAll.INSTANCE // @全体成员
+new Face(Face.呲牙) // qq自带表情，new Face(Face.ZI_YA) 是一样的
+Dice.random(); // 随机骰子，要自定义点数请 new Dice(6);
+```
+
+#### 图片
+
+首先要获取到联系人，上一部分讲了，这一部分还是用 `contact` 代表联系人
+
+首先你需要先用 `contact.uploadImage(图片)` 把图片上传到服务器，这个方法的返回值就是图片，要在消息中插入图片把它加进消息链 (MessageChain) 中即可。或者你可以直接用 `contact.sendMessage(图片);` 来发送。但是你会发现 `uploadImage` 的参数类型是 `ExternalResource`，那么我们要怎么指定图片呢？代码如下，上传并发送的例子
 
 ```java
 // 文件可以是 byte[]、InputStream、File 等
@@ -367,6 +467,121 @@ ExternalResource res = ExternalResource.create(new File("./sunday.jpg"));
 Image image = contact.uploadImage(res);
 res.close(); // 记得关闭资源
 contact.sendMessage(image);
+// 更多可选择操作:
+// msg.add(image);
+// image.plus("图片加文字");
 ```
 
-// TODO 敬请期待
+#### 语音
+
+一样，先获取到联系人，然后 `contact.uploadVoice(语音文件)` 把语音上传到服务器，这个方法的返回值就是图片，其他同上，代码如下
+
+```java
+ExternalResource res = ExternalResource.create(new File("./kawaii.amr"));
+// 如果你使用的 mirai 版本是2.7以前(不包括2.7)，请用下面标注了 2.0+ 那句
+Audio audio = contact.uploadAudio(res); // 2.7+
+// Voice audio = contact.uploadVoice(res); // 2.0+
+res.close(); // 记得关闭资源
+contact.sendMessage(audio);
+```
+
+[`AudioSupported.uploadAudio(resource)`](https://github.com/mamoe/mirai/blob/dev/mirai-core-api/src/commonMain/kotlin/contact/AudioSupported.kt#L39) 的注释：
+
+语音文件支持 AMR 和 SILK 格式. 若要支持 MP3 格式, 请参考 [mirai-silk-converter](https://github.com/project-mirai/mirai-silk-converter)
+当语音文件过大而被服务器拒绝上传时. (最大大小约为 1 MB)
+**注意**: 由于服务器不一定会检查大小, 该异常就不一定会因大小超过 1MB 而抛出.
+
+#### 文件
+
+在该文档编写时 (Release 2.8.0)，mirai 仅支持发送群文件
+
+要获取群文件根目录，则需要使用如下代码，group 代表群聊(联系人)实例
+
+```java
+// mirai 版本在2.8或以上的用第一个，否则用第二个
+group.getFiles() // 2.8+
+group.getFilesRoot() // 2.5+
+```
+
+```java
+// 上传文件，其中“进度回调”是可选参数，可不填
+// 源码中的注释: 文件路径, **包含目标文件名**. 如 `/foo/bar.txt`. 若是相对目录则基于 [根目录][root] 处理.
+// group.getFiles().uploadNewFile(路径, 文件, 进度回调) // 2.8+
+// group.getFilesRoot().upload(文件, 进度回调) // 2.5+
+ExternalResource res = ExternalResource.create("./测试文件.txt");
+// 我忘了该不该在执行上传后就关闭文件，如果不放心可以使用
+// ExternalResource res = ExternalResource.create("./测试文件.txt").toAutoCloseable();
+// 当然这玩意是在 2.8+ 才有的
+group.getFiles().uploadNewFile("测试文件.txt", res); // 2.8+
+// group.getFilesRoot().upload(res); // 2.5+
+```
+
+至于怎么看文件列表嘛… 我在这方面没怎么研究，看源码的注释吧
+
+[2.8+ AbstractFolder](https://github.com/mamoe/mirai/blob/dev/mirai-core-api/src/commonMain/kotlin/contact/file/AbsoluteFolder.kt)，[2.5+ RemoteFile](https://github.com/mamoe/mirai/blob/dev/mirai-core-api/src/commonMain/kotlin/utils/RemoteFile.kt)
+
+### 除了这些以外
+还有一种生成消息的选择，那就是 Mirai 码
+用法非常简单! 因其良好的可序列化和反序列化能力，经常在第三方 SDK 中被使用
+
+```java
+// java:
+MessageChain msg = MiraiCode.deserializeMiraiCode(字符串, 联系人);
+// kotlin:
+var msg = "字符串".deserializeMiraiCode(联系人)
+// 参数“联系人”可不填
+```
+
+只要这样就能解析字符串中的 Mirai 码，将其转换并拼接到一个 MessageChain 中。
+
+反过来，MessageChain 也能转换成 Mirai 码字符串，直接 `message.serializeToMiraiCode();` 即可。
+
+有关 Mirai 码字符串的编写规则，[在这个链接里有](https://github.com/mamoe/mirai/blob/dev/docs/Messages.md#%E7%94%B1-codablemessage-%E5%8F%96%E5%BE%97-mirai-%E7%A0%81%E5%AD%97%E7%AC%A6%E4%B8%B2)。以下是编写例子
+
+```java
+// java:
+MessageChain msg = MiraiCode.deserializeMiraiCode("[mirai:at:2431208142] Hello Mirai :)"); // @MrXiaoM Hello Mirai :)
+group.sendMessage(msg);
+```
+
+```kotlin
+// kotlin:
+var msg = "[mirai:at:2431208142] Hello Mirai :)".deserializeMiraiCode(); // @MrXiaoM Hello Mirai :)
+group.sendMessage(msg);
+```
+
+### 你已经学会如何制作机器人了
+
+利用事件系统和消息系统等，制作一个简单的练手作吧!
+
+**请在编写想要发布的插件之前，搜索一下有没有功能类似且更好的插件。如果有的话，除非你能比别人做得更好，否则最好不要发布出去。如果你是做练手作品，为了让自己更熟练操作 mirai 且不发布，那请随意。**
+
+以下是几个可供选择的练习题材，你可以把它们当作关卡，每个题材都去实现
+
+另外我**非常不推荐**你去写复读机，很容易被别有用心的人让机器人复读奇奇怪怪的东西而导致封号 (亲身经历)
+
+~~希望不会有人把一些阴间题材给 PR 上来~~
+
+> **猜数字**
+>
+> 开始游戏后随机生成一个数字，并告知随机数生成范围，让群员发送数字去猜，离正确答案过大过小都会有提示，最后猜到正确答案的群员胜利
+
+> **群管理**
+>
+> 关键词自动回复、自动禁言、主动退群自动拒绝加群请求、机器人无管理员权限时的异常处理等等
+
+> **涩图机器人**
+>
+> 随机发送二次元人物图片，咳咳 论坛那么多色图bot懂的都懂，怎么把它玩出花来又不违规就看你的了
+
+> **问答/抢答游戏**
+>
+> 开始游戏后机器人给出问题，谁先给出正确答案谁得分，最后得分最高的人获胜，要求在游戏结束后要有积分排行榜，群员超时无响应结束游戏等等。
+
+> **网站/应用爬虫**
+>
+> 主动或被动爬取互联网上指定站点的资源。因为各个社区定位千差万别，这里很难说要怎么搞。Github 可以搞 issues 发布提醒等 (有人搞过了)，b站可以搞动态发布提醒等 (有人搞过了)
+
+> **游戏对接**
+>
+> 时qq群内机器人可以与游戏内容进行交互，比如 Minecraft 服务器，具体内容大概为玩家信息查询、聊天转发等等。甚至是让机器人干涉游戏内容或者辅助已绑定qq号的玩家找回密码等，自由发挥想象。
