@@ -167,9 +167,9 @@ Bot bot = BotFactory.INSTANCE.newBot(114514L, "1919810", new BotConfiguration() 
 // BotFactory.newBot(qq, 密码)
 val bot = BotFactory.newBot(114514L, "1919810") {
     // 使用平板协议登录
-    setProtocol(MiraiProtocol.ANDROID_PAD);
+    setProtocol(MiraiProtocol.ANDROID_PAD)
     // 指定设备信息文件路径，文件不存在将自动生成一个默认的，存在就读取
-    fileBasedDeviceInfo("deviceInfo_114514.json");
+    fileBasedDeviceInfo("deviceInfo_114514.json")
     // 更多操作自己看代码补全吧
 };
 ```
@@ -206,16 +206,51 @@ Bot.getInstance(114514L);
 // Kotlin: bot.eventChannel
 ```
 
+以上这是简单的获取方法。本节之后，**本文将把事件通道统统用 `channel` 代替**。
+
+如果需要过滤一些事件，你需要在原有事件通道的基础上加 `.filter(返回boolean的且带一个类型为Event的方法)`，比如只在消息有at的时候才触发事件的示例通道如下
+
+```java
+// java:
+// 这样写只是方便理解，实际上可以缩写成下面这句
+// GlobalEventChannel.INSTANCE.filter(e -> (e instanceof MessageEvent) && ((MessageEvent)e).getMessage().contains(At.Key));
+EventChannel<Event> channel = GlobalEventChannel.INSTANCE.filter((e) -> { 
+    if (e instanceof MessageEvent) { 
+        return ((MessageEvent) e).getMessage().contains(At.Key);
+    }
+    return false;
+});
+channel.registerListenerHost(xwx);
+```
+
+```kotlin
+// kotlin:
+// 改自官方文档的例子
+var channel = GlobalEventChannel.filter { e is MessageEvent && e.message.contains(At.Key) }
+channel.registerListenerHost(xwx);
+```
+
+`.filter` 等方法支持链式，所以你可以在后面再追加几个过滤器。
+
+此外，`.filterIsInstance(事件类.class)` 等价于
+
+`.filter(e -> e instanceof 事件类) // java` 
+
+`.filter { e is 事件类 } // kotlin`
+
 选择好通道，**并将下面代码中的 channel 替换成你获取的通道**，如
 
 ```java
 channel.registerListenerHost(xwx);
 ```
 
-在 java，你选择公共事件通道时应该替换为
+你选择公共事件通道时应该替换为
 
 ```java
+// java:
 GlobalEventChannel.INSTANCE.registerListenerHost(xwx);
+// kotlin:
+GlobalEventChannel.registerListenerHost(xwx);
 ```
 
 清楚规则，就开始吧
@@ -260,7 +295,7 @@ channel.subscribeAlways<FriendMessageEvent> { event ->
 };
 ```
 
-## 监听一个类里所有事件
+### 监听一个类里所有事件
 
 官方文档指北: [使用 `@EventHandler` 注解标注的方法监听事件](https://github.com/mamoe/mirai/blob/dev/docs/Events.md#使用-eventhandler-注解标注的方法监听事件)
 
@@ -344,6 +379,83 @@ object EventHost : SimpleListenerHost {
 因此一个监听器的挂起可以阻塞事件处理过程而导致低优先级的监听器较晚处理.
 当事件被 使用 `Event.intercept()` 拦截后, 优先级较低 (靠右) 的监听器将不会被调用.
 
+### 新建事件
+
+你已经学会怎么监听事件了，那么学一下怎么新建一个自定义事件吧!
+
+本部分是选学部分，你可以直接跳过。~~官方文档[仅用了两行](https://github.com/mamoe/mirai/blob/dev/docs/Events.md#%E5%AE%9E%E7%8E%B0%E4%BA%8B%E4%BB%B6)来描述这一部分，因为这本来就是很简单的几乎不用教~~ 有人pr了，那部分被补充了
+
+如果你有开发过 Bukkit 服务端插件 (Bukkit 是 Minecraft Java Edition 的衍生服务端)，且把[事件系统](https://mineplugin.org/Event_API_Reference)玩通透了，这部分对你来说会相对简单。
+
+使用场景：机器人插件比较庞大，有一些东西需要其他人/插件可以去设置，但是这些我想要可以让其他人更改的数值都是临时的。也就是消息将要发送之前或之后/插件将要做某事之前或之后等等**要做一系列乱七八糟的事情的时候，我需要其他的插件能够在这里插一脚**，取消执行或者修改数值，这对我插件的可扩展性很重要。事件系统可以很好地帮助我，节省很多不必要的代码并且不需要重复造轮子。
+
+要新建一个自定义事件，首先要新建一个类，让其实现 `net.mamoe.mirai.event.Event` 或者继承 `net.mamoe.mirai.event.AbstractEvent`，怎么做随便你，这里实现 `Event` 类，代码如下
+
+```java
+// java:
+public class ExampleEvent implements Event {
+    String action;
+    public ExampleEvent(String action) {
+        this.action = action;
+    }
+    public String getAction(){
+        return action;
+    }
+    public void setAction(String action){
+        this.action = action;
+    }
+}
+```
+
+```kotlin
+// kotlin:
+class ExampleEvent(
+    public var action: String
+) : Event {
+    
+}
+```
+
+其他人/插件/程序就能够通过这个类来监听事件，那么这个时候就需要在你想要事件被触发的时候广播这个事件，让事件被触发，如果需要的话还可以让监听事件的人/插件/程序修改事件类实例里的变量，达到传回数据的目的。
+
+```java
+// java:
+String action = "test";
+System.out.println("action value before call event: " + action);
+ExampleEvent event = EventKt.broadcast(new ExampleEvent(action));
+System.out.println("action value after call event: " + event.getAction());
+```
+
+```kotlin
+// kotlin:
+val action : String = "test"
+println("action value before call event: " + action)
+ExampleEvent event = Event.broadcast(ExampleEvent(action))
+println("action value after call event: " + event.getAction())
+```
+
+**重要**：如果你要监听自己定义的或者别人定义的自定义事件，你可能需要使用 `GlobalEventChannel` 这个事件通道，因为从 bot 中获取的事件通道(`bot.getEventChannel()`)是监听 `BotEvent` 的，除非自定义事件继承了 `BotEvent`，否则这个自定义事件无法被监听到。
+
+监听自定义事件示例:
+
+``` java
+// java:
+GlobalEventChannel.INSTANCE.subscribeAlways(ExampleEvent.class, event -> { 
+    if(event.getAction().equals("kill")){
+        event.setAction("none");
+    }
+});
+```
+
+```kotlin
+// kotlin:
+GlobalEventChannel.subscribeAlways<ExampleEvent> { event ->
+    if(event.action.equals("kill")){
+        event.action = "none"
+    }
+};
+```
+
 ## 联系人&发送消息
 
 如需深入探究，请见 [mirai 开发文档](https://github.com/mamoe/mirai/blob/dev/docs/Contacts.md)
@@ -384,6 +496,8 @@ object EventHost : SimpleListenerHost {
 ## 生成消息
 
 如需深入探究，请见 [mirai 开发文档](https://github.com/mamoe/mirai/blob/dev/docs/Messages.md)
+
+> // TODO 此部分缺少 kotlin 代码示例，等待补充
 
 在发送消息时，你可以发送**消息元素**、**消息链**或者**字符串**，这部分将会讲如何生成各类消息
 
@@ -432,7 +546,7 @@ contact.sendMessage(msg1);
 
 注意：**在 java 拼接消息不能用加号**，比如 At 和字符串，如果用加号，At 等消息会被转换成字符串，发送出去将不会 At 到人。你可以理解成要用 `String.equals(String)` 而不是 `String == String`
 
-```
+```java
 // java:
 // 错误示范:
 contact.sendMessage(new At(2431208142L) + "测试");
