@@ -294,6 +294,18 @@ public void onEnable() {
         eventChannel.subscribeAlways(FriendMessageEvent.class, this::onFriendMessage);
     });
 }
+/* 但是BotOnlineEvent，每个Bot上线时都会触发，导致重复获取单机器人事件通道，重复设置事件的处理方法。
+   所以，可增加判断涉及到的QQ号，是否是自己想要的QQ号。*/
+public void onEnable() {
+    long qqBotNo = long型QQ号;
+    GlobalEventChannel.INSTANCE.subscribeAlways(BotOnlineEvent.class, event -> {
+        if (event.getBot().getId() == qqBotNo) {
+            Bot bot = Bot.getInstance(qqBotNo);
+            EventChannel<BotEvent> eventChannel = bot.getEventChannel();
+            eventChannel.subscribeAlways(FriendMessageEvent.class, this::onFriendMessage);
+        }
+    });
+}
 ```
 
 ```kotlin
