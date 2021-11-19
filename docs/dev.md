@@ -286,7 +286,7 @@ private void onFriendMessage(FriendMessageEvent event){
         event.getSubject().sendMessage("Hello Mirai :)");
     }
 }
-// 你也可以这样（通过 公共事件通道 获取 单机器人事件通道 ）
+// 你也可以这样（通过 公共事件通道 获取 单机器人事件通道 ），并给单机器人事件通道设置事件的处理方法
 public void onEnable() {
     GlobalEventChannel.INSTANCE.subscribeAlways(BotOnlineEvent.class, event -> {
         Bot bot = Bot.getInstance(long型QQ号);
