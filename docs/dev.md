@@ -182,6 +182,10 @@ val bot = BotFactory.newBot(114514L, "1919810") {
 Bot.getInstance(114514L);
 ```
 
+但是，值得注意，不要在 `onEnable` 方法中直接执行`Bot.getInstance()`获取Bot实例。因为 `mirai-console` 会先加载插件(`onLoad`)，加载完成插件(`onEnable`)后，才会登录 QQ Bot，因此，在执行 `onEnable` 方法时，QQ Bot 还没有登录，获取不到实例。
+
+我们可以使用**公共事件通道**监听QQ机器人在线事件 `BotOnlineEvent`，待 QQ Bot 在线后，再根据QQ号获取 QQ Bot 实例。详见[监听一个事件](#监听一个事件)
+
 ## 监听事件
 
 如需深入探究，请见 [mirai 官方文档](https://github.com/mamoe/mirai/blob/dev/docs/Events.md)
@@ -281,6 +285,14 @@ private void onFriendMessage(FriendMessageEvent event){
     if(event.getMessage().contentToString().equals("你好")) {
         event.getSubject().sendMessage("Hello Mirai :)");
     }
+}
+// 你也可以这样（通过 公共事件通道 获取 单机器人事件通道 ）
+public void onEnable() {
+    GlobalEventChannel.INSTANCE.subscribeAlways(BotOnlineEvent.class, event -> {
+        Bot bot = Bot.getInstance(long型QQ号);
+        EventChannel<BotEvent> eventChannel = bot.getEventChannel();
+        eventChannel.subscribeAlways(FriendMessageEvent.class, this::onFriendMessage);
+    });
 }
 ```
 
