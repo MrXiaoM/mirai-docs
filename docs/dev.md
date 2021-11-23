@@ -286,24 +286,25 @@ private void onFriendMessage(FriendMessageEvent event){
         event.getSubject().sendMessage("Hello Mirai :)");
     }
 }
-// 你也可以这样（通过 公共事件通道 获取 单机器人事件通道 ），并给单机器人事件通道设置事件的处理方法
+// 你也可以这样（通过 公共事件通道 获取 单机器人事件通道），并给单机器人事件通道设置事件的处理方法
 public void onEnable() {
+    long qqBotNo = long型QQ号;
+    /*
     GlobalEventChannel.INSTANCE.subscribeAlways(BotOnlineEvent.class, event -> {
-        Bot bot = Bot.getInstance(long型QQ号);
+        Bot bot = Bot.getInstance(qqBotNo);
         EventChannel<BotEvent> eventChannel = bot.getEventChannel();
         eventChannel.subscribeAlways(FriendMessageEvent.class, this::onFriendMessage);
     });
-}
-/* 但是BotOnlineEvent，每个Bot上线时都会触发，导致重复获取单机器人事件通道，重复设置事件的处理方法。
-   所以，可增加判断涉及到的QQ号，是否是自己想要的QQ号。*/
-public void onEnable() {
-    long qqBotNo = long型QQ号;
-    GlobalEventChannel.INSTANCE.subscribeAlways(BotOnlineEvent.class, event -> {
-        if (event.getBot().getId() == qqBotNo) {
-            Bot bot = Bot.getInstance(qqBotNo);
-            EventChannel<BotEvent> eventChannel = bot.getEventChannel();
-            eventChannel.subscribeAlways(FriendMessageEvent.class, this::onFriendMessage);
-        }
+    */
+    /* 但是 BotOnlineEvent，每个 Bot 上线时都会触发，导致重复获取单机器人事件通道，重复设置事件的处理方法。
+     * 所以，可增加判断涉及到的 QQ 号，是否是自己想要的QQ号。
+     */
+    GlobalEventChannel.INSTANCE.filterIsInstance(BotOnlineEvent.class)
+            .filter(e -> event.getBot().getId() == qqBotNo)
+	    .subscribeAlways(BotOnlineEvent.class, event -> {
+        Bot bot = event.getBot();
+        EventChannel<BotEvent> eventChannel = bot.getEventChannel();
+        eventChannel.subscribeAlways(FriendMessageEvent.class, this::onFriendMessage);
     });
 }
 ```
