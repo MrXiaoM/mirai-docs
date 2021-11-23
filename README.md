@@ -62,6 +62,6 @@
 如果你喜欢这个文档并有意资助，开发组比我更需要赞助，请[重定向到 project-mirai/mirai-sponsor](https://github.com/project-mirai/mirai-sponsor/blob/main/README.md)
 
 ## 计划
-* [ ] 开发文档以循循渐进的形式写，从部署到登录到事件到消息等等
+* [x] 开发文档以循循渐进的形式写，从部署到登录到事件到消息等等
 * [ ] 不使用社区 SDK 的非 jvm 语言与 mirai-api-http 交互教程。因为社区 SDK 太多了很难讲明白 XD
 * [ ] 考虑到 GitBook 日常前端崩溃，所以在本文档基本上完成之后，会在 MiraiForum 技术交流板块发一贴来备份以方便难以访问 Github 的用户查阅

@@ -12,11 +12,11 @@ description: 一般来说，鉴于图形界面类型的 mirai-console 不稳定�
 
 如果你是 Linux 系统或者 Mac 系统，请直接找到终端并打开。
 
-在命令窗口中键入`java -version`并按下`Enter`键。若提示“不是有效的命令…”之类的消息，则代表你没有安装 java 或者环境变量未被正确配置。
+在命令窗口中键入 `java -version` 并按下 `Enter` 键。若提示“不是有效的命令…”之类的消息，则代表你没有安装 java 或者环境变量未被正确配置。如果提示了包含有 `version "xxx"`之类的英文，则表明 java 正常
 
 如果你没有安装 java 推荐使用 64 位的 `OpenJDK` 或 `OracleJDK` 的 11 或以上版本，如果你不清楚哪个版本更好，哪个方便就用哪个，使用 `OracleJDK` 即可，安装包的下载地址如下，下载后安装即可: [Java Downloads | Oracle](https://www.oracle.com/java/technologies/downloads/#java11-windows)
 
-如果你安装了 java 仍出现“不是有效的命令…”之类的提示，请到搜索引擎搜索关键字`jdk 环境变量配置` 搜寻相关教程
+如果你安装了 java 仍出现“不是有效的命令…”之类的提示，请到搜索引擎搜索关键字`jdk 环境变量配置` 搜寻相关教程。[点击这里，百度一下](https://www.baidu.com/s?wd=jdk%20%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE)。
 
 ## 选择启动方式
 
@@ -30,6 +30,8 @@ description: 一般来说，鉴于图形界面类型的 mirai-console 不稳定�
 
 **在 Windows 下: 所有操作都需要在关闭“隐藏已知文件类型的扩展名”后进行**
 
+----
+
 ### 原始启动法
 
 先前往 [maven 仓库](https://mvnrepository.com) 搜索并下载以下几个库，格式是`.jar`，版本要对应：
@@ -41,6 +43,17 @@ mirai-console-terminal
 ```
 
 前两个文件**下载文件名里版本后面必须有 -all.jar 结尾才行**，如 `mirai-core-all-2.8.0-all.jar`
+
+```
+// 上面三个库在 Maven Central Repository 上的链接:
+https://repo1.maven.org/maven2/net/mamoe/mirai-core-all
+https://repo1.maven.org/maven2/net/mamoe/mirai-console
+https://repo1.maven.org/maven2/net/mamoe/mirai-console-terminal
+// 上面三个库的 2.8.0 版本在 Maven Central Repository 上的下载直链:
+https://repo1.maven.org/maven2/net/mamoe/mirai-core-all/2.8.0/mirai-core-all-2.8.0-all.jar
+https://repo1.maven.org/maven2/net/mamoe/mirai-console/2.8.0/mirai-console-2.8.0-all.jar
+https://repo1.maven.org/maven2/net/mamoe/mirai-console-terminal/2.8.0/mirai-console-terminal-2.8.0-all.jar
+```
 
 在你记得的地方新建一个文件夹 (名字随意，这里名字用 `mirai`)，并在这个文件夹内新建一个 `libraries` 文件夹，将下载的三个库复制到里面，回到 `mirai` 文件夹，新建文本文档并重命名为 `启动.bat`，鼠标右键点击它并点击`编辑`，将以下内容复制并粘贴进去，保存，然后双击打开 `启动.bat` 即可
 
@@ -59,17 +72,21 @@ pause
 
 这个异常并不影响 `mirai` 的正常运行，如果你看它不顺眼可以在上面的链接下载那个库，一样丢到 `libraries` 文件夹，注意，这个库在文件夹里必须要按名称排序排在第一位，如果你下载的文件都没有改过名可以不用管顺序。mcl 会自动下载这个库，所以用启动器启动法可以不用管这些零零碎碎的问题。
 
+----
+
 ### 启动器启动法
 
 先前往 [MCL 发布地址](https://github.com/iTXTech/mirai-console-loader/releases) 下载最新版启动器，一般点击 `Assets` 下面的 `mcl-*.*.*.zip` 即可
 
-将下载的文件解压到你记得的地方，然后双击打开文件 `mcl.cmd` (在 Linux 系统是 执行 `./mcl`，下同) 即可。
+将下载的文件解压到你记得的地方，然后双击打开文件 `mcl.cmd` 即可
+
+> 在 Linux 系统是 执行 `./mcl`，如果权限不够，就执行 `sudo sh ./mcl`，下同
 
 #### 出现错误
 
-若错误提示前面部分有 `java.lang.UnsupportedClassVersionError` 字样，请确保你已安装 `jdk11`
+若错误提示前面部分有 `java.lang.UnsupportedClassVersionError` 字样，请确保你已安装 `jdk11` 并且环境变量已配置正确。
 
-如果已安装，那么我们需要让 mcl 使用 `jdk11` 来启动，请鼠标右键点击 `mcl.cmd`，点击`编辑`。
+如果已安装并且已正确配置环境变量，那么我们需要让 mcl 强行使用 `jdk11` 来启动，请鼠标右键点击 `mcl.cmd`，点击`编辑`。
 
 (这个错误处理教程仅适合 Windows，Linux 用户如果出现这个问题请先百度，无法解决再来找我)
 
@@ -94,6 +111,8 @@ set JAVA_BINARY="C:\Program Files\Java\jdk-11.0.13\bin\java.exe"
 ```
 
 改好后再次双击打开文件 `mcl.cmd` 即可
+
+----
 
 ## 登录
 
