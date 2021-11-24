@@ -746,7 +746,31 @@ object Echo: SimpleCommand(
     }
 }
 ```
+```
+// java:
 
+// Plugin.java (部分)
+public void onEnable(){
+    CommandManager.INSTANCE.registerCommand(new Echo(this), false);
+}
+
+// Echo.java
+public class Echo extends SimpleCommand{
+    public Echo(CommandOwner owner) {
+        super(owner, "echo", new String[] { "复读" }, "复读消息",
+                owner.getParentPermission(),
+                CommandArgumentContext.EMPTY);
+    }
+    @Handler // 标记这是指令处理器  // 函数名随意 
+    public void handle(User target, String message) { // 这两个参数会被作为指令参数要求
+        if(target.getId() != bot.getId()) {
+            if(target instanceof Member) {
+                ((Member) target).getGroup().sendMessage(message);
+            }
+        }
+    }
+}
+```
 这样在聊天环境（安装`chat-command`并分配权限后）发送`/echo @<bot> <message>`，bot就会复读这个`message`
 
 ----
