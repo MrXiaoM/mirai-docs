@@ -525,8 +525,6 @@ object EventHost : SimpleListenerHost {
 
 官方文档指北:  [消息系统](https://github.com/mamoe/mirai/blob/dev/docs/Messages.md)
 
-> // TODO 此部分缺少 kotlin 代码示例，等待补充
-
 在发送消息时，你可以发送**消息元素**、**消息链**或者**字符串**，这部分将会讲如何生成各类消息
 
 ### 工具: 消息链构建器 MessageChainBuilder
@@ -535,7 +533,8 @@ object EventHost : SimpleListenerHost {
 
 要往里面添加消息元素(如何实例化消息元素会在后面说到)，只需要
 
-````java
+```java
+// java:
 // 在最后追加消息(Message、SignleMessage)，可以追加字符串
 builder.add(消息元素);
 // 在某处插入消息(SignleMessage)，如果要追加字符串，请追加消息元素 new PlainText("消息");
@@ -544,11 +543,19 @@ builder.add(索引, 消息元素);
 builder.addall(消息元素列表);
 // 同上
 builder.addall(索引, 消息元素列表);
-````
+```
+
+```kotlin
+// kotlin:
+val builder = MessageChainBuilder()
+// 之后同java
+builder.add(消息元素)
+```
 
 要发送给某人的时候，用 `builder.build()` 来构建消息链，示例如下
 
 ```java
+// java:
 MessageChainBuilder builder = new MessageChainBuilder();
 builder.add(new At(2431208142L));
 builder.add("Hello Mirai :)");
@@ -556,6 +563,15 @@ builder.add("Hello Mirai :)");
 MessageChain msg = builder.build();
 // 要发送消息，上一部分说了
 contact.sendMessage(msg);
+```
+
+```kotlin
+// kotlin:
+val builder = MessageChainBuilder()
+builder.add(new At(2431208142L))
+builder.add("Hello Mirai :)")
+val msg = builder.build() // builder.asMessageChain() 也可以
+contact.sendMessage(msg)
 ```
 
 ### 不用构建器也可以
@@ -572,6 +588,15 @@ contact.sendMessage(msg1);
 // contact.sendMessage(msg2);
 ```
 
+```kotlin
+// @MrXiaoM Hello Mirai :)
+val msg1 = At(2431208142L).plus("Hello Mirai :)")
+// 你好 @MrXiaoM
+val msg2 = PlainText("你好 ").plus(new At(2431208142L))
+contact.sendMessage(msg1)
+// contact.sendMessage(msg2)
+```
+
 注意：**在 java 拼接消息不能用加号**，比如 At 和字符串，如果用加号，At 等消息会被转换成字符串，发送出去将不会 At 到人。你可以理解成要用 `String.equals(String)` 而不是 `String == String`
 
 ```java
@@ -580,6 +605,18 @@ contact.sendMessage(msg1);
 contact.sendMessage(new At(2431208142L) + "测试");
 // 正确示范:
 contact.sendMessage(new At(2431208142L).plus("测试"));
+```
+
+kotlin中也可以直接使用DSL来构建MessageChain
+```kotlin
+// kotlin:
+// 复制自官方文档
+val chain = buildMessageChain {
+    +PlainText("a")
+    +AtAll
+    +Image("/f8f1ab55-bf8e-4236-b55e-955848d7069f")
+    add(At(123456)) // `+` 和 `add` 作用相同
+}
 ```
 
 ### 实例化消息元素
