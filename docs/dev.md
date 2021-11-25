@@ -90,6 +90,11 @@ dependencies {
 	implementation 'net.mamoe:mirai-core-all:2.8.0:all'
     implementation 'net.mamoe:mirai-console:2.8.0:all'
 }
+// build.gradle.kts
+dependencies {
+    implementation('net.mamoe:mirai-core-all:2.8.0:all')
+    implementation('net.mamoe:mirai-console:2.8.0:all')
+}
 ```
 
 ```pom
@@ -244,7 +249,7 @@ Bot.getInstance(114514L)
 
 官方文档指北:  [事件系统](https://github.com/mamoe/mirai/blob/dev/docs/Events.md)
 
-现在，我们需要让机器人对某些动作作出回应，这时就需要去监听事件了。
+现在，我们需要让机器人对某些动作作出回应，这时就需要去监听事件了，当然也可以用`mirai-console`自带的[指令](#指令模块)模块来进行判断与回应。
 
 监听的方式多种多样，可以**监听单个事件**，**监听一个类里所有事件**等等
 
@@ -697,6 +702,88 @@ group.sendMessage(msg);
 var msg = "[mirai:at:2431208142] Hello Mirai :)".deserializeMiraiCode() // @MrXiaoM Hello Mirai :)
 group.sendMessage(msg)
 ```
+
+## 指令模块
+
+官方文档指北：[指令系统](https://github.com/mamoe/mirai-console/blob/master/docs/Commands.md)
+
+使用指令模块的优缺点：
+
+优点：
+- 既可以在代码执行，也可以在消息环境中执行（需要[`chat-command`](https://github.com/project-mirai/chat-command)插件作为前置，并授予相关权限）
+- 对于简单的命令不需要对事件进行监听并解析，可以直接使用`mirai-console`自带的语法解析
+- 可以直接获取发送人等信息
+
+缺点：
+- 需要分配权限
+- 对复杂语法无能为力
+- Java写起来比Kotlin（看起来）更繁琐
+
+下面的例子展示了如何实现一个简单的复读的指令
+
+```kotlin
+// Kotlin:
+// Plugin.kt
+object Plugin: KotlinPlugin(
+	JvmPluginDescription(// 此处省略)
+){
+    override fun onEnable() {
+        Echo.register()
+    }
+}
+
+// Echo.kt
+object Echo: SimpleCommand(
+    Plugin,
+    primaryName = "echo",
+    secondaryNames = arrayOf("复读"),
+    description = "复读消息"
+) {
+    @Handler // 标记这是指令处理器  // 函数名随意 
+    suspend fun CommandSender.handle(target: User, message: String) { // 这两个参数会被作为指令参数要求
+        if (target.id == bot?.id) { // 判断@对象是否是bot
+            sendMessage(message) // 复读
+        }
+    }
+}
+```
+```java
+// java:
+// Plugin.java
+public class Plugin extends JavaPlugin {
+    
+    public static final Plugin INSTANCE = new Plugin();
+    
+    private Plugin() {
+        super(new JvmPluginDescriptionBuilder(// 此处省略).build());
+    }
+    
+    @Override
+    public void onEnable() {
+        CommandManager.INSTANCE.registerCommand(Echo.INSTANCE, false);
+    }
+}
+
+// Echo.java
+public class Echo extends JSimpleCommand {
+    
+    public static final Echo INSTANCE = new Echo();
+    
+    private Echo() {
+        super(Plugin.INSTANCE, "echo", "复读");
+        this.setDescription("复读消息");
+    }
+    
+    @Handler // 标记这是指令处理器  // 函数名随意
+    public void handle(CommandSender sender, User target, String msg) {
+        Bot bot = sender.getBot();
+        if (bot != null && target.getId() == bot.getId()) { // 判断@对象是否是bot
+            sender.sendMessage(msg); // 复读
+        }
+    }
+}
+```
+这样在聊天环境（安装`chat-command`并分配权限后）发送`/echo @<bot> <message>`，bot就会复读这个`message`
 
 ----
 
