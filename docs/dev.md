@@ -710,7 +710,7 @@ group.sendMessage(msg)
 使用指令模块的优缺点：
 
 优点：
-- 既可以在代码执行，也可以在消息环境中执行（需要[`chat-command`](https://github.com/project-mirai/chat-command)插件作为前置）
+- 既可以在代码执行，也可以在消息环境中执行（需要[`chat-command`](https://github.com/project-mirai/chat-command)插件作为前置，并授予相关权限）
 - 对于简单的命令不需要对事件进行监听并解析，可以直接使用`mirai-console`自带的语法解析
 - 可以直接获取发送人等信息
 
@@ -722,6 +722,7 @@ group.sendMessage(msg)
 下面的例子展示了如何实现一个简单的复读的指令
 
 ```kotlin
+// Kotlin:
 // Plugin.kt
 object Plugin: KotlinPlugin(
 	JvmPluginDescription(// 此处省略)
@@ -746,27 +747,38 @@ object Echo: SimpleCommand(
     }
 }
 ```
-```
+```java
 // java:
-
-// Plugin.java (部分)
-public void onEnable(){
-    CommandManager.INSTANCE.registerCommand(new Echo(this), false);
+// Plugin.java
+public class Plugin extends JavaPlugin {
+    
+    public static final Plugin INSTANCE = new Plugin();
+    
+    private Plugin() {
+        super(new JvmPluginDescriptionBuilder(// 此处省略).build());
+    }
+    
+    @Override
+    public void onEnable() {
+        CommandManager.INSTANCE.registerCommand(Echo.INSTANCE, false);
+    }
 }
 
 // Echo.java
-public class Echo extends SimpleCommand{
-    public Echo(CommandOwner owner) {
-        super(owner, "echo", new String[] { "复读" }, "复读消息",
-                owner.getParentPermission(),
-                CommandArgumentContext.EMPTY);
+public class Echo extends JSimpleCommand {
+    
+    public static final Echo INSTANCE = new Echo();
+    
+    private Echo() {
+        super(Plugin.INSTANCE, "echo", "复读");
+        this.setDescription("复读消息");
     }
-    @Handler // 标记这是指令处理器  // 函数名随意 
-    public void handle(User target, String message) { // 这两个参数会被作为指令参数要求
-        if(target.getId() != bot.getId()) {
-            if(target instanceof Member) {
-                ((Member) target).getGroup().sendMessage(message);
-            }
+    
+    @Handler // 标记这是指令处理器  // 函数名随意
+    public void handle(CommandSender sender, User target, String msg) {
+        Bot bot = sender.getBot();
+        if (bot != null && target.getId() == bot.getId()) { // 判断@对象是否是bot
+            sender.sendMessage(msg); // 复读
         }
     }
 }
