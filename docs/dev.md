@@ -476,7 +476,11 @@ object EventHost : SimpleListenerHost {
 
 你已经学会怎么监听事件了，那么学一下怎么新建一个自定义事件吧!
 
-本部分是选学部分，你可以直接跳过。~~官方文档[仅用了两行](https://github.com/mamoe/mirai/blob/dev/docs/Events.md#%E5%AE%9E%E7%8E%B0%E4%BA%8B%E4%BB%B6)来描述这一部分，因为这本来就是很简单的几乎不用教~~ ~~有人pr了，那部分被补充了~~ 现在是我pr的了，暂时还没合并，可以先[点击这里](https://github.com/mamoe/mirai/blob/367e9cd5561a85a4ad5512053ab362be95820f85/docs/Events.md#%E5%AE%9E%E7%8E%B0%E4%BA%8B%E4%BB%B6)查看相关内容
+本部分是选学部分，你可以直接跳过。
+
+官方文档指北：[实现事件](https://github.com/mamoe/mirai/blob/dev/docs/Events.md#%E5%AE%9E%E7%8E%B0%E4%BA%8B%E4%BB%B6)
+
+官方文档已经描述得很详细了，~~而且是本仓库主 MrXiaoM 去 PR 的~~，就不在这里重复教了。
 
 如果你有开发过 Bukkit 服务端插件 (Bukkit 是 Minecraft Java Edition 的衍生服务端)，且把[事件系统](https://mineplugin.org/Event_API_Reference)玩通透了，这部分对你来说会相对简单。
 
