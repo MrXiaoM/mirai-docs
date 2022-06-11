@@ -826,6 +826,34 @@ public class Echo extends JSimpleCommand {
 ```
 这样在聊天环境（安装`chat-command`并分配权限后）发送`/echo @<bot> <message>`，bot就会复读这个`message`
 
+### 获取消息事件 及 获取消息源
+
+你可能会恼火为什么这样写会拿不到 `MessageSource` 导致无法在回复用户的消息中使用 `QuoteReply` (回复消息)  
+事实上你只需要把 `CommandSender` 改为 `CommandSenderOnMessage<MessageEvent>` 即可 (源码注释 [CommandSender.kt#L734-L740](https://github.com/mamoe/mirai/blob/dev/mirai-console/backend/mirai-console/src/command/CommandSender.kt#L734-L740)，更详细的注释请见点开链接后翻到顶部)。
+
+> 如果你只想让该命令只接收某种联系人的消息，你可以更改形参 `MessageEvent` 的类型或者使用以下子类  
+> `MemberCommandSenderOnMessage` 代表一个真实的 群员 主动在群内发送消息执行指令  
+> `FriendCommandSenderOnMessage` 代表一个真实的 好友 主动在私聊消息执行指令  
+> `TempCommandSenderOnMessage` 代表一个 群员 主动在临时会话发送消息执行指令  
+
+需要注意的是，这样的话**将不会响应控制台的命令**。回复消息示例如下：  
+
+```kotlin
+// kotlin
+@Handler
+suspend fun CommandSenderOnMessage<MessageEvent>.handle() {
+    val quote = fromEvent.source.quote()
+    sendMessage(quote.plus("你好"))
+}
+```
+```java
+// java
+@Handler
+public void handle(CommandSenderOnMessage<MessageEvent> sender) {
+    QuoteReply quote = new QuoteReply(sender.getFromEvent().getSource());
+    sender.sendMessage(quote.plus("你好"));
+}
+```
 ----
 
 ## 你已经学会如何制作机器人了
