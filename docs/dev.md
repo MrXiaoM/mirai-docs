@@ -676,8 +676,8 @@ contact.sendMessage(audio);
 
 [`AudioSupported.uploadAudio(resource)`](https://github.com/mamoe/mirai/blob/dev/mirai-core-api/src/commonMain/kotlin/contact/AudioSupported.kt#L39) 的注释：
 
-语音文件支持 AMR 和 SILK 格式. 若要支持 MP3 格式, 请参考 [mirai-silk-converter](https://github.com/project-mirai/mirai-silk-converter)
-当语音文件过大而被服务器拒绝上传时. (最大大小约为 1 MB)
+语音文件支持 AMR 和 SILK 格式. 若要支持 MP3 格式, 请参考 [mirai-silk-converter](https://github.com/project-mirai/mirai-silk-converter)  
+当语音文件过大而被服务器拒绝上传时. (最大大小约为 1 MB)  
 **注意**: 由于服务器不一定会检查大小, 该异常就不一定会因大小超过 1MB 而抛出.
 
 ----
