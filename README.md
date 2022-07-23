@@ -1,3 +1,8 @@
+# @Deprecated
+
+该文档将在新文档完成时将被弃用并存档到另一个分支，新文档将会部署在以下链接并在 Github 留一份 wikitext 备份  
+https://wiki.mrxiaom.top/index.php?title=Mirai
+
 # mirai-docs
 [![](https://img.shields.io/badge/核心-mamoe/mirai-blue)](https://github.com/mamoe/mirai) [![](https://img.shields.io/badge/控制台-mamoe/mirai--console-blue)](https://github.com/mamoe/mirai-console) [![](https://img.shields.io/badge/HTTP接口实现-project--mirai/mirai--api--http-blue)](https://github.com/project-mirai/mirai-api-http)
 
