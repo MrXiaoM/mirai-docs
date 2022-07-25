@@ -1,2 +1,7 @@
-# mirai-docs
-面向初学者的mirai非官方帮助文档
+# backup
+
+数据消散wiki百科的备份
+
+https://wiki.mrxiaom.top/
+
+此分支为单向备份，请勿提交 Pull Requests
