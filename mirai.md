@@ -2,7 +2,7 @@
 title: Mirai
 description: 高效率 QQ 机器人支持库
 published: true
-date: 2022-07-23T15:43:26.833Z
+date: 2022-07-25T12:48:17.015Z
 tags: 
 editor: markdown
 dateCreated: 2022-07-23T14:49:09.411Z
@@ -23,3 +23,6 @@ dateCreated: 2022-07-23T14:49:09.411Z
 4. [搜寻和安装插件](/mirai/使用_搜寻和安装插件)
 
 # 入门开发篇
+
+1. [部署开发环境](/mirai/开发入门_部署开发环境)
+2. [Hello Mirai!](/mirai/开发入门_Hello_Mirai)
