@@ -2,7 +2,7 @@
 title: 开发入门篇 /02/ Hello Mirai!
 description: 
 published: true
-date: 2022-08-29T04:23:43.692Z
+date: 2022-08-31T04:49:15.301Z
 tags: 
 editor: markdown
 dateCreated: 2022-07-24T18:22:15.847Z
@@ -91,6 +91,21 @@ channel.subscribeAlways(GroupMessageEvent.class, event -> {
 写好之后，运行测试，登录机器人，并使用你的 QQ 客户端向机器人发送好友消息 `hello` 来检验成果吧！
 
 最后，请尝试修改其中的数值，并尝试利用 IDEA 的代码补全修改代码，获取收到的消息来自的 QQ 号、昵称等信息发送回去，实现比较简单的功能。
+
+# 构建插件
+
+> 该部分仅适用于 mirai-console
+{.is-info}
+
+在 IDEA 右侧你可以看到 Gradle 选项卡，在里面展开 `项目名→Tasks→mirai` 即可找到构建插件的两个任务
+
+![qq图片20220831123624.png](/qq图片20220831123624.png)
+
+运行 `buildPlugin` 任务，将构建适用于 mirai-console 2.11 及以上的插件，使用的依赖将不会被打包进插件 jar，而是生成一个列表放入 `/META-INF/mirai-console-plugin/` 里的 `dependencies-private.txt` 和 `dependencies-shared.txt`。加载插件时 mirai-console 会读这个列表自动帮你下载并链接依赖库。这样构建的插件，后缀名为 `.mirai2.jar`。
+
+运行 `buildPluginLegacy` 任务，将构建适用于 mirai-console 2.11 以下的插件，使用的依赖将会被 shadowJar 打包进插件 jar 里。这样构建的插件，后缀名为 `.mirai.jar`。
+
+构建的插件文件将会在 `/build/mirai/` 目录出现。
 
 # 完成
 
