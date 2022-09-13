@@ -2,7 +2,7 @@
 title: 开发入门篇 /02/ Hello Mirai!
 description: 
 published: true
-date: 2022-08-31T04:49:15.301Z
+date: 2022-09-12T15:23:13.272Z
 tags: 
 editor: markdown
 dateCreated: 2022-07-24T18:22:15.847Z
@@ -13,14 +13,23 @@ dateCreated: 2022-07-24T18:22:15.847Z
 在上一章中，你学会了如何搭建开发环境，现在，让我们先让插件在测试环境跑起来吧！
 
 # 测试
+## 启动 mirai-console 实例
+> 该部分仅适用于 gradle 项目，且 mirai-console-gradle 版本在 2.12.0 以上
+{.is-info}
 
-> 该部分仅适用于 mirai-console
+使用命令行 `/gradlew runConsole`
+
+或者在 idea 中使用 Gradle 的 Task Configuration
+![22-09-12_idea64_g8kjiywawp.png](/22-09-12_idea64_g8kjiywawp.png)
+点击后会自动生成 Run/Debug Configuration
+![22-09-12_idea64_3aascaxgtc.png](/22-09-12_idea64_3aascaxgtc.png)
+
+## 启动 mirai-console 实例 (旧)
+> 该部分适用于 maven 或其他无法使用 runConsole 的环境，但是模拟效果不好。
 {.is-info}
 
 
 首先，在 `src/kotlin/test` 目录 (不存在就创建) 新建一个 kotlin 类 `RunTerminal.kt`，代码如下，请复制并按照注释提示自行替换插件主类和补充 import。
-
-如果你是用官方的插件模板开发的，该目录下已有预置的 `RunTerminal.kt`，可直接启动。
 
 ```kotlin
 @OptIn(ConsoleExperimentalApi::class)
@@ -44,7 +53,7 @@ suspend fun main() {
 }
 ```
 
-点击 `suspend fun main()` 右边绿色的 **▶** 图标，点击*运行*或*调试*均可启动测试，请记住启动测试的方法，按需使用。
+点击 `suspend fun main()` 左边绿色的 **▶** 图标，点击*运行*或*调试*均可启动测试，请记住启动测试的方法，按需使用。
 
 # 你好，世界
 
@@ -94,7 +103,7 @@ channel.subscribeAlways(GroupMessageEvent.class, event -> {
 
 # 构建插件
 
-> 该部分仅适用于 mirai-console
+> 该部分仅适用于 mirai-console，且仅适用于已安装 mirai-console 的 Gradle 插件的项目
 {.is-info}
 
 在 IDEA 右侧你可以看到 Gradle 选项卡，在里面展开 `项目名→Tasks→mirai` 即可找到构建插件的两个任务
@@ -106,6 +115,36 @@ channel.subscribeAlways(GroupMessageEvent.class, event -> {
 运行 `buildPluginLegacy` 任务，将构建适用于 mirai-console 2.11 以下的插件，使用的依赖将会被 shadowJar 打包进插件 jar 里。这样构建的插件，后缀名为 `.mirai.jar`。
 
 构建的插件文件将会在 `/build/mirai/` 目录出现。
+
+# 使用代码登录机器人
+
+> 在仅使用 mirai-core 的开发中，使用代码登录机器人是非常重要的。如果使用 mirai-console，除非有特殊需求。请使用自带的自动登录。
+{.is-info}
+
+
+以下是登录QQ号 `114514` 密码 `1919810` 的示例。
+
+一目了然，不言而喻。
+
+```kotlin
+// kotlin
+val bot = BotFactory.newBot(114514L, "1919810") {
+    // 这里是机器人配置
+    // 比如使用文件储存设备信息
+    fileBasedDeviceInfo()
+}
+```
+```java
+// java
+Bot bot = BotFactory.INSTANCE.newBot(114514L, "1919810", new BotConiguration() {{
+    // 这里是机器人配置
+    // 比如使用文件储存设备信息
+    fileBasedDeviceInfo()
+}}};
+```
+需要注意的是，执行 `fileBasedDeviceInfo()` 或者 `fileBasedDeviceInfo("device_114514.json")` 之类在 BotConfiguration 里的方法，只是修改了某个设置，这些设置大多是在机器人登录时使用，并不是说执行了这个方法就具体执行了某些功能，有的人说了他十遍甚至九遍还不懂。（恼）
+
+
 
 # 完成
 

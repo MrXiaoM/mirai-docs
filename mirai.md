@@ -2,7 +2,7 @@
 title: Mirai
 description: 高效率 QQ 机器人支持库
 published: true
-date: 2022-07-25T12:48:17.015Z
+date: 2022-09-12T05:30:20.353Z
 tags: 
 editor: markdown
 dateCreated: 2022-07-23T14:49:09.411Z
@@ -10,6 +10,10 @@ dateCreated: 2022-07-23T14:49:09.411Z
 
 # Mirai
 [mirai](https://github.com/mamoe/mirai) 是由 [Him188](https://github.com/Him188) 在 2019 年 8 月 7 日 10:14:28 创建仓库，现由 [Mamoe Technologies](https://github.com/mamoe) 维护的高效率 QQ 机器人支持库。
+
+[官方文档](https://docs.mirai.mamoe.net/)更具备专业性，但对于初接触的新人而言，或许还是有些无从下手，并且官方有一部分重要文档是写在源码的 [KDoc](https://kdoc.mirai.mamoe.net/) 里的，较为分散。
+
+本站的 mirai 区将整理官方文档，调整顺序、作出解释并添加一些注意事项和补充说明，以循序渐进的方式带你一步一步地熟悉 mirai 相关衍生软件的开发。
 
 > 部分内容目前还在编写中，敬请期待。
 {.is-info}
@@ -26,3 +30,10 @@ dateCreated: 2022-07-23T14:49:09.411Z
 
 1. [部署开发环境](/mirai/开发入门_部署开发环境)
 2. [Hello Mirai!](/mirai/开发入门_Hello_Mirai)
+3. [事件系统](/mirai/开发入门_事件系统)
+
+# 已弃用内容
+
+旧文档地址：https://mirai-docs.doomteam.fun/
+
+个人认为我编写的旧文档更像是流水账，对官方文档的简单解释和补充，并且还没有分页。
