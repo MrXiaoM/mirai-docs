@@ -2,11 +2,13 @@
 title: Mirai
 description: 高效率 QQ 机器人支持库
 published: true
-date: 2022-09-12T05:30:20.353Z
+date: 2022-11-15T19:33:12.489Z
 tags: 
 editor: markdown
 dateCreated: 2022-07-23T14:49:09.411Z
 ---
+
+> 如有疑问请先翻阅[疑难解答](/mirai/troubleshoot)。
 
 # Mirai
 [mirai](https://github.com/mamoe/mirai) 是由 [Him188](https://github.com/Him188) 在 2019 年 8 月 7 日 10:14:28 创建仓库，现由 [Mamoe Technologies](https://github.com/mamoe) 维护的高效率 QQ 机器人支持库。
