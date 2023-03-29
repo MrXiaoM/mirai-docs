@@ -2,7 +2,7 @@
 title: Mirai
 description: 高效率 QQ 机器人支持库
 published: true
-date: 2022-11-15T19:33:12.489Z
+date: 2022-12-08T13:23:47.542Z
 tags: 
 editor: markdown
 dateCreated: 2022-07-23T14:49:09.411Z
@@ -23,16 +23,16 @@ dateCreated: 2022-07-23T14:49:09.411Z
 
 # 使用篇
 
-1. [部署使用环境](/mirai/使用_部署使用环境)
-2. [在控制台登录](/mirai/使用_在控制台登录)
-3. [配置自动登录](/mirai/使用_配置自动登录)
-4. [搜寻和安装插件](/mirai/使用_搜寻和安装插件)
+1. [部署使用环境](/mirai/1-1)
+2. [在控制台登录](/mirai/1-2)
+3. [配置自动登录](/mirai/1-3)
+4. [搜寻和安装插件](/mirai/1-4)
 
 # 入门开发篇
 
-1. [部署开发环境](/mirai/开发入门_部署开发环境)
-2. [Hello Mirai!](/mirai/开发入门_Hello_Mirai)
-3. [事件系统](/mirai/开发入门_事件系统)
+1. [部署开发环境](/mirai/2-1)
+2. [Hello Mirai!](/mirai/2-2)
+3. [事件系统](/mirai/2-3)
 
 # 已弃用内容
 
