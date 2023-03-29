@@ -1,11 +1,6 @@
 ---
 title: Mirai
 description: 高效率 QQ 机器人支持库
-published: true
-date: 2022-12-08T13:23:47.542Z
-tags: 
-editor: markdown
-dateCreated: 2022-07-23T14:49:09.411Z
 ---
 
 > 如有疑问请先翻阅[疑难解答](/mirai/troubleshoot)。

@@ -1,11 +1,6 @@
 ---
 title: Mirai 疑难解答
 description: 
-published: true
-date: 2023-01-12T04:30:38.334Z
-tags: 
-editor: markdown
-dateCreated: 2022-11-15T18:28:30.605Z
 ---
 
 > 在这里将会有一些常见的问题及其解决方法，不定期更新。如果你有想要添加的内容，请联系QQ 2431208142 或电子信箱 [mrxiaom@qq.com](mailto:mrxiaom@qq.com)  

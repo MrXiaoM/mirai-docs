@@ -1,11 +1,6 @@
 ---
 title: 首页
 description: 由人间工作建立与维护的 wiki 站点
-published: true
-date: 2022-07-23T16:38:04.905Z
-tags: 
-editor: markdown
-dateCreated: 2022-07-23T14:38:49.310Z
 ---
 
 # 数据消散

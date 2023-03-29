@@ -1,11 +1,6 @@
 ---
 title: 要饭
-description: 服务器也是要花钱的
-published: true
-date: 2022-09-12T05:01:39.301Z
-tags: 
-editor: markdown
-dateCreated: 2022-07-23T16:29:25.182Z
+description: 来点捐助吧
 ---
 
 # 在线要饭
