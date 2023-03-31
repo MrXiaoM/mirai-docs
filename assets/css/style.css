@@ -1,70 +1,287 @@
 details:not([open])>*:not(summary) {
     display: none !important;
 }
+
 details summary {
     cursor: pointer;
 }
+
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.content {
+    box-sizing: border-box;
+    padding-top: 40px;
+    padding-left: 180px;
+    margin: 0 auto;
+}
+
+.markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
+    padding-left: 25px;
+}
+
+#header {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 72px;
+    background: #DDDDDD;
+    box-shadow: black 0px 0px 5px;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    width: 160px;
+    margin-right: 25px;
+    color: #333;
+    text-decoration: none;
+}
+
+.logo .info {
+    display: block;
+    margin: auto 0;
+    font-size: 20px;
+}
+
+.info>* {
+    margin: 0;
+}
+
+#header .info {
+    width: inherit;
+    margin: auto 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#header .info *:empty {
+    display: none
+}
+
+.github {
+    margin: auto 0;
+    padding: 0 16px;
+}
+
+.github>a {
+    text-decoration: none;
+    color: #222;
+}
+
+#side-menu {
+    position: fixed;
+    float: left;
+    top: 72px;
+    bottom: 0px;
+    width: 180px;
+    background: #efefef;
+    overflow-y: scroll;
+    box-shadow: black 0px 0px 5px;
+
+}
+
+#side-menu ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+    margin: 0;
+}
+
+#side-menu details:is([open]) {
+    background: #E0E0FF;
+}
+
+#side-menu .selected {
+    background: rgba(0, 0, 0, .05);
+}
+
+#side-menu li:hover {
+    background: rgba(0, 0, 0, .1);
+}
+
+#side-menu li>a {
+    display: block;
+    padding: 10px 15px;
+}
+
+#side-menu li {
+    border: 1px #222;
+}
+
+#side-menu details>summary::marker {
+    font: normal normal normal 18px/1 FontAwesome;
+    content: "\f0fe";
+}
+
+#side-menu details:is([open])>summary::marker {
+    content: "\f146";
+}
+
+#side-menu summary {
+    padding: 10px 15px;
+}
+
+#side-menu summary>a {
+    padding-left: 5px;
+}
+
+.toggle {
+    position: fixed;
+    left: 180px;
+    bottom: 32px;
+    width: 64px;
+    height: 52px;
+    border-radius: 0 32px 32px 0;
+    display: none;
+}
+
+#toggle-button {
+    background: #EEEEEE;
+    border: 1px solid #000;
+    border-left: 0;
+}
+
+#toggle-button:before {
+    margin: auto;
+}
+
+#toggle-button-check {
+    z-index: 100;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#toggle-button-check:checked,
+#toggle-button-check:checked~.toggle {
+    left: 180px;
+}
+
+#toggle-button-check:checked~#side-menu {
+    left: 0px;
+}
+
+#footer {
+    display: flex;
+    background: #DDDDDD;
+    color: #333;
+    padding: 15px 0 20px 0;
+}
+
+#footer * {
+    margin: auto;
+    text-decoration: none;
+}
+
+a {
+    color: #0969da;
+    text-decoration: none;
+}
+
+li a {
+    text-decoration: none;
+    color: #222;
+}
+
+@media (max-width: 830px) {
+    .markdown-body {
+        padding: 45px 15px;
+    }
+
+    .content {
+        padding-left: 0;
+    }
+
+    #side-menu {
+        left: -180px;
+    }
+
+    .toggle {
+        display: flex;
+        left: 0px;
+    }
+}
+
 .markdown-body blockquote {
     padding: 1rem;
     background-color: #eceff1;
-    border-left: 55px solid #607d8b;
+    border-left: 36px solid #607d8b;
     border-radius: .5rem;
     margin: 1rem 0;
 }
-.markdown-body blockquote.is-info{
-    background-color:#e3f2fd;
-    border-color:#64b5f6;
-    color:#0d47a1
+
+.markdown-body blockquote.is-info {
+    background-color: #e3f2fd;
+    border-color: #64b5f6;
+    color: #0d47a1
 }
-.markdown-body blockquote.is-info code{
-    background-color:#e3f2fd;
-    color:#1565c0
+
+.markdown-body blockquote.is-info code {
+    background-color: #e3f2fd;
+    color: #1565c0
 }
-.theme--dark .markdown-body blockquote.is-info{
-    background-color:#0d47a1;
-    color:#e3f2fd;
-    border-color:#2196f3
+
+.theme--dark .markdown-body blockquote.is-info {
+    background-color: #0d47a1;
+    color: #e3f2fd;
+    border-color: #2196f3
 }
-.markdown-body blockquote.is-warning{
-    background-color:#fff3e0;
-    border-color:#ffb74d;
-    color:#b33f00
+
+.markdown-body blockquote.is-warning {
+    background-color: #fff3e0;
+    border-color: #ffb74d;
+    color: #b33f00
 }
-.markdown-body blockquote.is-warning code{
-    background-color:#fff3e0;
-    color:#ef6c00
+
+.markdown-body blockquote.is-warning code {
+    background-color: #fff3e0;
+    color: #ef6c00
 }
-.theme--dark .markdown-body blockquote.is-warning{
-    background-color:#cd4800;
-    color:#ffe0b2;
-    border-color:#ff9800;
-    box-shadow:0 0 2px 0 #212121
+
+.theme--dark .markdown-body blockquote.is-warning {
+    background-color: #cd4800;
+    color: #ffe0b2;
+    border-color: #ff9800;
+    box-shadow: 0 0 2px 0 #212121
 }
-.markdown-body blockquote.is-danger{
-    background-color:#ffebee;
-    border-color:#e57373;
-    color:#b71c1c
+
+.markdown-body blockquote.is-danger {
+    background-color: #ffebee;
+    border-color: #e57373;
+    color: #b71c1c
 }
-.markdown-body blockquote.is-danger code{
-    background-color:#ffebee;
-    color:#c62828
+
+.markdown-body blockquote.is-danger code {
+    background-color: #ffebee;
+    color: #c62828
 }
-.theme--dark .markdown-body blockquote.is-danger{
-    background-color:#b71c1c;
-    color:#ffcdd2;
-    border-color:#f44336
+
+.theme--dark .markdown-body blockquote.is-danger {
+    background-color: #b71c1c;
+    color: #ffcdd2;
+    border-color: #f44336
 }
-.markdown-body blockquote.is-success{
-    background-color:#e8f5e9;
-    border-color:#81c784;
-    color:#1b5e20
+
+.markdown-body blockquote.is-success {
+    background-color: #e8f5e9;
+    border-color: #81c784;
+    color: #1b5e20
 }
-.markdown-body blockquote.is-success code{
-    background-color:#e8f5e9;
-    color:#2e7d32
+
+.markdown-body blockquote.is-success code {
+    background-color: #e8f5e9;
+    color: #2e7d32
 }
-.theme--dark .markdown-body blockquote.is-success{
-    background-color:#1b5e20;
-    color:#e8f5e9;
-    border-color:#4caf50
+
+.theme--dark .markdown-body blockquote.is-success {
+    background-color: #1b5e20;
+    color: #e8f5e9;
+    border-color: #4caf50
 }
