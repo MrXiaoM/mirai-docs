@@ -5,6 +5,9 @@ details:not([open])>*:not(summary) {
 details summary {
     cursor: pointer;
 }
+:target {
+    padding-top:85px;
+}
 
 body {
     height: 100%;
