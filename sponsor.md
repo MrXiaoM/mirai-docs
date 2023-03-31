@@ -5,7 +5,7 @@ description: 来点捐助吧
 
 # 在线要饭
 <center class="half">
-    <img src="/qqpay.png" width="30%"></img><img src="/wechatpay.png" width="30%"></img><img src="/alipay.jpg" width="30%"></img>
+    <img src="/assets/image/qqpay.png" width="30%"></img><img src="/assets/image/wechatpay.png" width="30%"></img><img src="/assets/image/alipay.jpg" width="30%"></img>
 </center>
 
 以上是我的收款二维码，请在经济允许范围内给予我一定的经济支持，维护服务器运行也是要花钱的。所有赞助者将会被记录到「流水」中，若赞助者没有备注留名，将使用「微信用户」、「支付宝用户」之类的名义作为缺省值。
