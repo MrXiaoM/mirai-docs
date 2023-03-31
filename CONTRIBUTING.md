@@ -22,7 +22,7 @@ key: value
 | key | 描述 | 默认值 |
 | --- | --- | --- |
 | title | 页面标题，同时会作为在目录显示的名称 | No Title |
-| description | 页面描述 | No Description |
+| description | 页面描述 |  |
 
 所有元数据会参与模板中 `${key}` 的替换，页面模板文件详见 generator 分支的 template.html
 
