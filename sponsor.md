@@ -4,23 +4,5 @@ description: 来点捐助吧
 ---
 
 # 在线要饭
-<center class="half">
-    <img src="/assets/image/qqpay.png" width="30%"></img><img src="/assets/image/wechatpay.png" width="30%"></img><img src="/assets/image/alipay.jpg" width="30%"></img>
-</center>
 
-以上是我的收款二维码，请在经济允许范围内给予我一定的经济支持，维护服务器运行也是要花钱的。所有赞助者将会被记录到「流水」中，若赞助者没有备注留名，将使用「微信用户」、「支付宝用户」之类的名义作为缺省值。
-
-现已改用免费的静态网页托管服务。
-
-# 流水
-
-总共收到赞助: 10 CNY
-余额: 0 CNY
-
-「事件」一般为赞助或续费服务器。
-
-| 日期时间 | 操作人 | 事件 | 余额 |
-| ---- | ---- | ---- | ---- |
-| 2022-07-24 22:07 | cssxsh | 赞助 ¥10 | 10 CNY |
-| 2022-07-30 10:20 | 人间工作P | 充值 ￥122 | 132 CNY |
-| 2022-07-30 10:20 | 人间工作P | 续费半年 | 0 CNY |
+[![前往 爱发电 支持我](http://ghproxy.com/https://github.com/MrXiaoM/MrXiaoM/raw/main/afdian.jpg)](https://afdian.net/@mrxiaom)
