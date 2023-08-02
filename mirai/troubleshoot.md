@@ -7,6 +7,43 @@ description:
 > 撰写者请使用易于辩识、范围较广的标题，以方便阅览者寻找答案。
 {.is-info}
 
+# EncryptService.alert “报错”
+```
+2023-08-02 00:00:20 W/EncryptService.alert: Encrypt service was loaded: top.mrxiaom.qsign.QSignService$Factory@23056929
+2023-08-02 00:00:20 W/EncryptService.alert: All outgoing message may be leaked by this service.
+2023-08-02 00:00:20 W/EncryptService.alert: Use this service if and only if you trusted this service and the service provider.
+2023-08-02 00:00:20 W/EncryptService.alert: Service details:
+2023-08-02 00:00:20 W/EncryptService.alert:   `- Jvm Class: class top.mrxiaom.qsign.QSignService$Factory
+2023-08-02 00:00:20 W/EncryptService.alert:   `- ClassLoader: JvmPluginClassLoader{qsign-dev.mirai2.jar}
+2023-08-02 00:00:20 W/EncryptService.alert:   `- Source: file:/D:/Github/unidbg-fetch-qsign/debug-sandbox/plugins/qsign-dev.mirai2.jar
+2023-08-02 00:00:20 W/EncryptService.alert:   `- Protected Domain: ProtectionDomain  (file:/D:/Github/unidbg-fetch-qsign/debug-sandbox/plugins/qsign-dev.mirai2.jar <no signer certificates>)
+ JvmPluginClassLoader{qsign-dev.mirai2.jar}
+ <no principals>
+ java.security.Permissions@2b48f45a (
+ ("java.io.FilePermission" "D:\Github\unidbg-fetch-qsign\debug-sandbox\plugins\qsign-dev.mirai2.jar" "read")
+)
+```
+这样格式的**不叫报错**，这只是一个警告，同时意味着你的签名服务已经成功注册并使用了。
+
+这个日志是 mirai 在警告你正在使用第三方签名服务，可能有数据泄露危险，并且把签名服务的详细地址打印出来让用户了解。
+
+# 出现“云天明 章北海”信息后卡住了
+
+可能是签名服务所在的机子配置比较差，或者签名服务死锁了。  
+等待几分钟，如果一直卡住，重启 mirai 并重启签名服务。
+
+# 请检查 xxx by xxxx:xx 的可用性
+
+签名服务没有启动，或者签名服务地址填写错误。
+
+检查签名服务是否已启动并正常运行，可以在浏览器访问签名服务地址看看能不能连上。
+
+在 `KFCFactory.json` 检查协议对应的`签名服务类型`和`签名服务地址`是否正确。
+
+# 没有找到 8.9.xx 的服务配置
+
+去 `KFCFactory.json` 里添加配置，详见 [fix-protocol-version](https://github.com/cssxsh/fix-protocol-version) 的文档。
+
 # 启动时插件报错
 如果报错日志格式如下所示
 ```
@@ -47,6 +84,18 @@ code=数字代码, title=标题, message=中文消息
 
 首先，我们认为你已阅读[常见登录失败原因](/mirai/1-2)，这一部分仅对一些不确定的特殊例外情况进行补充。
 
+## 45-不支持加密算法
+```
+Error(bot=Bot(), code=45, title=禁止登录, message=你当前使用的QQ版本过低，请前往QQ官网im.qq.com下载最新版QQ后重试。, errorInfo=)
+```
+```
+Error(bot=Bot(), code=45, title=禁止登录, message=登录失败，建议升级最新版本后重试，或通过问题反馈与我们联系。, errorInfo=)
+```
+
+这是目前最常见的风控，由 mirai 没有实现协议所需加密算法所导致。
+
+解决方法详见 [mirai 登录全解](/mirai/45)
+
 ## 235-版本过低
 
 ```
@@ -55,7 +104,7 @@ Error(bot=Bot(), code=235, title=温馨提示, message=当前QQ版本过低，�
 
 近期有很多人都出现了这个问题，且按照表格「检查密码是否正确和密码长度是否在16以内」的方法无法解决。
 
-这疑似是最新的风控，解决方法详见[论坛官方公告](https://mirai.mamoe.net/topic/223)
+~~这疑似是最新的风控，解决方法详见[论坛官方公告](https://mirai.mamoe.net/topic/223)~~
 
 ## 237-网络不稳定/存在安全风险
 ```
@@ -76,7 +125,6 @@ Error(bot=Bot(), code=237, title=安全提醒, message=当前登录存在安全�
 > 两者同为风控，本质上都是腾讯怀疑你被盗号，237 的风控等级更高。
 > 你需要把你的设备信息等删除干净 (删除 `bots/qq号` 文件夹) 再进行登录和处理验证。
 {.is-info}
-
 
 ------
 
