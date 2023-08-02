@@ -29,6 +29,13 @@ description: 高效率 QQ 机器人支持库
 2. [Hello Mirai!](/mirai/2-2)
 3. [事件系统](/mirai/2-3)
 
+# 官方版新手教程
+
+1. [用户手册](https://docs.mirai.mamoe.net/ConsoleTerminal.html)
+2. [开发人员: 准备工作](https://docs.mirai.mamoe.net/Preparations.html)
+3. [开发人员: 配置项目](https://docs.mirai.mamoe.net/ConfiguringProjects.html)
+4. [开发人员: CoreAPI](https://docs.mirai.mamoe.net/CoreAPI.html)
+
 # 已弃用内容
 
 旧文档地址：https://mirai-docs.doomteam.fun/
