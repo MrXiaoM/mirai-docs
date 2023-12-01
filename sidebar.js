@@ -31,7 +31,7 @@ const sidebar = {
     ],
     "/": [
         {
-            text: "向百科贡献",
+            text: "贡献文档",
             link: '/CONTRIBUTING'
         },
         {

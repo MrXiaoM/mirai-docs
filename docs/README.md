@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://avatars.github.ink/u/35788433?s=260
+heroImage: https://avatars.github.ink/u/35788433?s=200
 heroHeight: 80
 actions:
   - text: mirai
