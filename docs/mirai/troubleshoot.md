@@ -3,9 +3,11 @@ title: Mirai 疑难解答
 description: 
 ---
 
-> 在这里将会有一些常见的问题及其解决方法，不定期更新。如果你有想要添加的内容，请联系QQ 2431208142 或电子信箱 [mrxiaom@qq.com](mailto:mrxiaom@qq.com)  
-> 撰写者请使用易于辩识、范围较广的标题，以方便阅览者寻找答案。
-{.is-info}
+::: tip
+在这里将会有一些常见的问题及其解决方法，不定期更新。如果你有想要添加的内容，请联系QQ 2431208142 或电子信箱 [mrxiaom@qq.com](mailto:mrxiaom@qq.com)  
+你也可以滚动到页面底部点击「编辑此页面」并发起一个 Pull Requests。  
+撰写者请使用易于辩识、范围较广的标题，以方便阅览者寻找答案。
+:::
 
 # EncryptService.alert “报错”
 ```
@@ -147,16 +149,17 @@ Error(bot=Bot(), code=237, title=安全提醒, message=当前登录存在安全�
 
 根据 [WorldLeen 的 issue](https://github.com/mamoe/mirai/issues/2347#issuecomment-1312464615)，登录错误次数过多也会出现这个问题。
 
-> 你可以使用 `235-版本过低` 的方法解决 237 问题。
-> 两者同为风控，本质上都是腾讯怀疑你被盗号，237 的风控等级更高。
-> 你需要把你的设备信息等删除干净 (删除 `bots/qq号` 文件夹) 再进行登录和处理验证。
-{.is-info}
+::: tip
+你可以使用 `235-版本过低` 的方法解决 237 问题。  
+两者同为风控，本质上都是腾讯怀疑你被盗号，237 的风控等级更高。  
+你需要把你的设备信息等删除干净 (删除 `bots/qq号` 文件夹) 再进行登录和处理验证。
+:::
 
 ------
 
 # MCL 初次启动红字
 
-如果你打开 MCL 出现 Failed to xxxxxx 或者 timeout 之类的红字，且通常出现得较慢，内容较短，可能是你的网络无法访问 mirai 网络仓库，请按照以下链接的操作提示进行换源：
+如果你打开 MCL 出现 Failed to xxxxxx 或者 timeout 之类的红字，且通常出现得较慢，内容较短，可能是你的网络无法访问 mirai 网络仓库，请按照以下链接的操作提示进行换源：  
 https://mirai.mamoe.net/topic/1084
 
 ------
@@ -168,7 +171,7 @@ mcl 已升级请重新启动
 ```
 该问题是 MCL 默认捆绑插件 mcl-addon 于 2.1.0 ([0bc3dc](https://github.com/iTXTech/mcl-addon/commit/d1ce0bc3dc7e73691d23a22863eb91a85c19c70d)) 引入，原因是有笨比让默认仓库只留了阿里云镜像，导致滑稽360的 fix 变成了 bug。
 
-将 mcl-addon 更新到 2.1.1 或者删除即可解决问题。
+将 mcl-addon 更新到 2.1.1 或者删除即可解决问题。  
 用 PowerShell (Windows) 或 终端 (Linux/MacOS) 在 MCL 所在文件夹下执行以下命令即可执行检查更新。
 ```
 ./mcl -u

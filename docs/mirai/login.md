@@ -3,12 +3,14 @@ title: 登录指南
 description: 整理登录mirai的方法
 ---
 
-> 这篇文档还未完成，等待补充信息
-{.is-warning}
+::: warning
+这篇文档~~还未完成，等待补充信息~~ 已过期，不具备参考价值。
+:::
 
-> 本文档基于 [无法登录的临时处理方案](https://mirai.mamoe.net/topic/223)  
-> 本文档的 `mirai` 特指 `mirai-console`。只要你能找到方法装载相关的库，理论上 `mirai-core` 通用。
-{.is-info}
+::: tip
+本文档基于 [无法登录的临时处理方案](https://mirai.mamoe.net/topic/223)  
+本文档的 `mirai` 特指 `mirai-console`。只要你能找到方法装载相关的库，理论上 `mirai-core` 通用。
+:::
 
 # 寻求帮助
 
