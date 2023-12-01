@@ -28,6 +28,8 @@ key: value
 
 # 额外语法
 
+> 由于改用 vuepress 生成静态文档，以下内容暂不可用
+
 在引用块的结尾可以添加 `{.class}` 来修改 `<blockquote>` 的 class 属性，从而改变引用块的样式，示例如下。
 ```markdown
 > 默认
