@@ -28,6 +28,10 @@ const sidebar = {
             text: "疑难解答",
             link: '/mirai/troubleshoot'
         },
+        {
+            text: "签名服务纪事",
+            link: '/mirai/sign'
+        },
     ],
     "/": [
         {
