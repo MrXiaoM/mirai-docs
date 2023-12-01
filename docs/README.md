@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /image/logo.png
+heroImage: /assets/images/logo.png
 heroHeight: 80
 actions:
   - text: mirai

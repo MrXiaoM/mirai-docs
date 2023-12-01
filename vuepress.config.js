@@ -18,7 +18,7 @@ export default defineUserConfig({
         lineNumbers: true,
     },
     theme: hopeTheme({
-        favicon: "/image/logo.png",
+        favicon: "/assets/images/logo.png",
         sidebar: sidebar,
         navbar: [
             {
