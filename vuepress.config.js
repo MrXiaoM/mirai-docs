@@ -27,7 +27,15 @@ export default defineUserConfig({
             },
             {
                 text: "mirai",
-                link: "/server",
+                link: "/mirai",
+            },
+            {
+                text: "贡献文档",
+                link: "/CONTRIBUTING",
+            },
+            {
+                text: "投喂",
+                link: "/sponsor",
             }
         ],
         print: false,
@@ -38,11 +46,11 @@ export default defineUserConfig({
             activeHeaderLinks: true,
             nprogress: true,
         },
-        lastUpdated: false,
-        breadcrumb: false,
+        lastUpdated: true,
+        breadcrumb: true,
         pageInfo: false,
-        nextLinks: false,
-        prevLinks: false,
+        nextLinks: true,
+        prevLinks: true,
     }),
     plugins: [
     ],
