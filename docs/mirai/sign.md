@@ -22,6 +22,8 @@ mirai 从 2.15.0 的某个子版本开始，将数据包签名作为接口暴露
 由于 mirai 等协议框架，不使用签名服务是难以登录的，不止 mirai，go-cqhttp 等框架也有签名服务需求，  
 庞大的机器人使用需求使得签名服务火热，火热了难免人多眼杂。
 
+2023年10月16日，magic-signer-guide 开源，并改名为 KuimiVM。
+
 2023年10月20日前后，unidbg-fetch-qsign 作者 fuqiuluo 被传唤，完整源代码被安全团队拷贝，fix-protocol-version 仓库消失。  
 次日 unidbg-fetch-qsign 删库。mirai 进入了仅能靠签名服务备份苟活的黑暗期。
 
