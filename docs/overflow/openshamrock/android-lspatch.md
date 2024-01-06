@@ -1,12 +1,12 @@
 ---
-title: Mumu LSPatch 修补应用
+title: Android LSPatch 修补应用
 description: Overflow + OpenShamrock 在无 Root 环境下的安装教程
 ---
 
-本文将介绍在 Mumu 模拟器中使用 LSPatch 修补 QQ，并安装 OpenShamrock 的方法。
+本文将介绍在 Android 中使用 LSPatch 修补 QQ，并安装 OpenShamrock 的方法。
 
 ::: tip
-前置操作另请参见 [上游文档](mumu.md)。
+前置操作另请参见 [上游文档](android.md)。
 :::
 
 ::: warning
@@ -29,6 +29,13 @@ LSPatch 项目现无人维护，若有条件请使用 Magisk+LSPosed
 
 ::: tip
 请保持 LSPatch 在后台运行。
+
+到手机设置查看 `LSPatch` 的应用信息
++ 开启`自启动`
++ 通知管理中开启`允许通知`
++ 省电策略(如果有)改为`无限制`
+
+不同手机的设置不同，做这一步的目的是尽可能让系统不杀死软件。
 :::
 
 # 2.安装OpenShamrock
@@ -47,4 +54,4 @@ LSPatch 项目现无人维护，若有条件请使用 Magisk+LSPosed
 
 # 完成
 
-安装完成，请返回[上游文档](mumu.md)从第5步开始操作。
+安装完成，请返回[上游文档](android.md)从第5步开始操作。

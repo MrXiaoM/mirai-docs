@@ -1,5 +1,5 @@
 ---
-title: Magisk+LSPosed
+title: Mumu Magisk+LSPosed
 description: Overflow + OpenShamrock 在有 Root 环境下的安装教程
 ---
 
@@ -62,10 +62,10 @@ adb shell am start -a android.intent.action.MAIN -c org.lsposed.manager.LAUNCH_M
 ```
 (需要这么做的原因: [LSPosed discussions#2729](https://github.com/orgs/LSPosed/discussions/2729))
 
-在`模块`处启用`Shamrock`，然后关闭再打开模拟器。启动QQ，返回 Shamrock，主页显示 `已激活` 则代表安装成功。
+在 `模块` 处启用 `Shamrock`，然后关闭再打开模拟器。启动QQ，返回 Shamrock，主页显示 `已激活` 则代表安装成功。
 
 ::: danger
-修改 `状态` 中的 `接口信息` 配置需要**完全重启**QQ才生效，建议结束QQ进程后重启模拟器来使配置生效。
+修改 `状态` 中的 `接口信息` 配置需要**完全重启**QQ才生效，建议结束QQ进程或重启模拟器来使配置生效。
 :::
 
 # 完成

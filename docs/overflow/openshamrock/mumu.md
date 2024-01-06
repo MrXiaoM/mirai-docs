@@ -54,8 +54,9 @@ QQ 版本越高检测越严，不要更新。
 > ```
 > adb forward tcp:手机端口 tcp:电脑端口
 > ```
-> 假如服务器(电脑)那边的 5700 端口已经被占用了，你可以 `adb forward tcp:5800 tcp:5801`
-> 
+> 假如服务器(电脑)那边的 5800 端口已经被占用了，你可以 `adb forward tcp:5800 tcp:5801`
+>
+> 如果需要使用 [overflow-shamrock-ext](https://github.com/project-tRNA/overflow-shamrock-ext)，请把 `5700` 端口也配置转发。
 
 # 6.连接到Overflow
 
