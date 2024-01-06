@@ -33,7 +33,7 @@ const sidebar = {
             link: '/mirai/sign'
         },
     ],
-    "overflow": [
+    "/overflow": [
         {
             text: "Overflow",
             link: '/overflow'
@@ -41,6 +41,7 @@ const sidebar = {
         {
             text: "搭配 OpenShamrock",
             children: [
+                "/overflow/openshamrock",
                 "/overflow/openshamrock/mumu",
                 "/overflow/openshamrock/mumu-magisk-lsposed",
                 "/overflow/openshamrock/mumu-lspatch"
