@@ -33,6 +33,26 @@ const sidebar = {
             link: '/mirai/sign'
         },
     ],
+    "overflow": [
+        {
+            text: "Overflow",
+            link: '/overflow'
+        },
+        {
+            text: "搭配 OpenShamrock",
+            children: [
+                "/overflow/openshamrock/mumu",
+                "/overflow/openshamrock/mumu-magisk-lsposed",
+                "/overflow/openshamrock/mumu-lspatch"
+            ]
+        },
+        {
+            text: "搭配 Gensokyo",
+            children: [
+                "/overflow/gensokyo"
+            ]
+        },
+    ],
     "/": [
         {
             text: "贡献文档",

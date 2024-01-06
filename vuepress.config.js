@@ -30,6 +30,10 @@ export default defineUserConfig({
                 link: "/mirai",
             },
             {
+                text: "Overflow",
+                link: "/overflow",
+            },
+            {
                 text: "贡献文档",
                 link: "/CONTRIBUTING",
             },
