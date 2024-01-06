@@ -27,7 +27,11 @@ QQ 版本越高检测越严，不要更新。
 
 然后打开 Mumu 安装路径，默认的是 `D:\Program Files\Netease\MuMuPlayer-12.0\shell`，打开后编辑地址栏，输入 `cmd` 并回车。
 
-在命令窗口中输入命令 `adb connect 127.0.0.1:调试端口` 即可连接到 ADB。
+在命令窗口中输入命令 
+```shell
+adb connect 127.0.0.1:调试端口
+```
+即可连接到 ADB。
 
 执行完不要关闭命令窗口，先留着，后面要用。
 
@@ -48,13 +52,20 @@ QQ 版本越高检测越严，不要更新。
 
 在安装完 OpenShamrock 后，需要将模拟器的端口转发到本机，否则本机的程序无法访问模拟器中 OpenShamrock 放出的端口。
 
-首先按照上面的`第3步`连接到ADB，然后再在命令窗口输入命令 `adb forward tcp:5800 tcp:5800` 即可配置端口转发。
+首先按照上面的`第3步`连接到ADB，然后再在命令窗口输入命令
+```shell
+adb forward tcp:5800 tcp:5800
+```
+即可配置端口转发。
 
 > 具体用法: (将手机端口转发到电脑端口)
-> ```
+> ```shell
 > adb forward tcp:手机端口 tcp:电脑端口
 > ```
-> 假如服务器(电脑)那边的 5800 端口已经被占用了，你可以 `adb forward tcp:5800 tcp:5801`
+> 假如服务器(电脑)那边的 5800 端口已经被占用了，你可以
+> ```shell
+> adb forward tcp:5800 tcp:5801
+> ```
 >
 > 如果需要使用 [overflow-shamrock-ext](https://github.com/project-tRNA/overflow-shamrock-ext)，请把 `5700` 端口也配置转发。
 
