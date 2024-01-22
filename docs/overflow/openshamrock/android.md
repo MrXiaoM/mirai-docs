@@ -3,6 +3,10 @@ title: Android 安装方法
 description: Overflow + OpenShamrock 在 Android 下的使用教程
 ---
 
+::: tip
+本文已默认你已经成功安装并启动 Overflow，你可以在 [官网](https://mirai.mrxiaom.top) 打包下载 Overflow + mirai-console 整合包。
+:::
+
 ::: tip 前提条件
 服务器没有`虚拟化`条件，你有空闲的 Android 手机，不管有无 Root 都可使用此方法。  
 即使服务器没有公网也可以使用，当然，服务器有公网会更方便。

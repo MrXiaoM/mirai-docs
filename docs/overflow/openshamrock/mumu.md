@@ -3,6 +3,10 @@ title: Mumu 安装方法
 description: Overflow + OpenShamrock 在 Windows 下的使用教程
 ---
 
+::: tip
+本文已默认你已经成功安装并启动 Overflow，你可以在 [官网](https://mirai.mrxiaom.top) 打包下载 Overflow + mirai-console 整合包。
+:::
+
 ::: tip 前提条件
 如果你的 Windows 服务器支持`虚拟化` (右键任务栏 -> 任务管理器 -> 性能 -> CPU -> 虚拟化: 已启用)，且性能足以运行一个模拟器 (CPU性能富余、空闲运行内存大于4GB)，则可以使用该方法安装 OpenShamrock 并连接 Overflow。
 :::
