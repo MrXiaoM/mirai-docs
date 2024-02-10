@@ -32,6 +32,10 @@ const sidebar = {
             text: "签名服务纪事",
             link: '/mirai/sign'
         },
+        {
+            text: "协议信息提取",
+            link: '/mirai/eden'
+        },
     ],
     "/overflow": [
         {
