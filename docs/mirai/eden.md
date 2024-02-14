@@ -21,11 +21,19 @@ description:
 | `sub_sig_map` | `oicq.wlogin_sdk.request.WtloginHelper` | `mSubSigMap` |
 | `qua` | `assets/qua.ini` 或 `cooperation.qzone.QUA` | `QUA` |
 
+APK 中解压出的 `AndroidManifest.xml` 是编码的，需要 [AXMLPrinter2](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/android4me/AXMLPrinter2.jar) 解码，解码结果将会输出在终端。
+```shell
+java -cp AXMLPrinter2.jar test.AXMLPrinter AndroidManifest.xml
+```
+`app_id` 和 `sub_app_id` 也可以在 `AndroidManifest.xml` 中读取，分别为 `AppSetting_params` 和 `AppSetting_params_pad`，两者都值均为`#`之前的数字。  
+不同渠道获得的安装包，`app_id`、`sub_app_id` 各不相同，同一个版本，不同渠道出现不同的 id 是正常的。
+
 在 C#，`apk_sign` 可以这样获取
 ```csharp
 var cert = X509Certificate.CreateFromCertFile("META-INF/ANDROIDR.RSA");
 var apkSign = cert.GetCertHashString(HashAlgorithmName.MD5).ToLower();
 ```
+在编写 Eden 时，签名 md5 已经很久没变过了，至少在 8983 版本，签名 md5 是 `a6b745bf24a2c277527716f6f36eb68d`。
 
 # QUA 格式
 
