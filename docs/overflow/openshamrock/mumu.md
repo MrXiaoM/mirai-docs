@@ -64,7 +64,7 @@ adb forward tcp:5800 tcp:5800
 
 > 具体用法: (将手机端口转发到电脑端口)
 > ```shell
-> adb forward tcp:手机端口 tcp:电脑端口
+> adb forward tcp:电脑端口 tcp:手机端口
 > ```
 > 假如服务器(电脑)那边的 5800 端口已经被占用了，你可以
 > ```shell
