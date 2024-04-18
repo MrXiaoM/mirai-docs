@@ -25,6 +25,12 @@ const sidebar = {
             ]
         },
         {
+            text: "开发实践笔记",
+            children: [
+                "/mirai/notes/wait-next-message",
+            ]
+        },
+        {
             text: "疑难解答",
             link: '/mirai/troubleshoot'
         },
@@ -60,6 +66,12 @@ const sidebar = {
             text: "搭配 Gensokyo",
             children: [
                 "/overflow/gensokyo"
+            ]
+        },
+        {
+            text: "搭配 LLOnebot",
+            children: [
+                "/overflow/llonebot"
             ]
         },
     ],
