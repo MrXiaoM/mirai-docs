@@ -1,5 +1,5 @@
 ---
-title: Gensokyo
+title: LLOnebot
 ---
 
 ::: tip
