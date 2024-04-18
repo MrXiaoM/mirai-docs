@@ -41,8 +41,9 @@ LSPatch 项目现无人维护，若有条件请使用 Magisk+LSPosed
 # 2.安装OpenShamrock
 
 选择一个渠道下载 OpenShamrock (下载 `-all` 的那个文件)
-+ [发布版](https://github.com/whitechi73/OpenShamrock/releases)
-+ [开发版](https://github.com/whitechi73/OpenShamrock/actions/workflows/build-apk.yml)
++ ~~[发布版](https://github.com/whitechi73/OpenShamrock/releases)~~
++ ~~[开发版](https://github.com/whitechi73/OpenShamrock/actions/workflows/build-apk.yml)~~
++ 新版本仅支持 Kritor，不支持 Onebot，此处为最后支持 Onebot 的[最新发布版](https://github.com/whitechi73/OpenShamrock/releases/tag/1.0.8)和[最新开发版](https://github.com/whitechi73/OpenShamrock/actions/runs/8328575760)
 
 安装完毕后，**至少启动一遍** Shamrock，在 `状态` 中开启 `主动WebSocket`。
 
