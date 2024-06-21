@@ -12,6 +12,10 @@ description: Overflow + OpenShamrock 在 Android 下的使用教程
 即使服务器没有公网也可以使用，当然，服务器有公网会更方便。
 :::
 
+::: warning 已失去支持
+事实上，我们更推荐你使用其它更轻量化的 Onebot 实现。
+:::
+
 # 1.安装QQ
 
 选择一个版本相对较低，且可以登录的 QQ，并安装。本文使用的是官方渠道的 [8.9.80.12440](https://downv6.qq.com/qqweb/QQ_1/android_apk/Android_8.9.80_64.apk)。

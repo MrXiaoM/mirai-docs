@@ -11,6 +11,10 @@ description: Overflow + OpenShamrock 在 Windows 下的使用教程
 如果你的 Windows 服务器支持`虚拟化` (右键任务栏 -> 任务管理器 -> 性能 -> CPU -> 虚拟化: 已启用)，且性能足以运行一个模拟器 (CPU性能富余、空闲运行内存大于4GB)，则可以使用该方法安装 OpenShamrock 并连接 Overflow。
 :::
 
+::: warning 已失去支持
+事实上，我们更推荐你使用其它更轻量化的 Onebot 实现。
+:::
+
 # 1.安装模拟器
 
 正常安装 [Mumu 模拟器](https://mumu.163.com/update/)，本文使用版本是 Mumu 12 V3.7.3 (2511)

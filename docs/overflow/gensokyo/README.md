@@ -34,7 +34,10 @@ gensokyo-xxx
 - 将 `ws_host` 的值设为上面获得的连接地址
 - 将 `token` 的值设为上面获得的 `ws_server_token` 的值
 
-接下来启动 Gensokyo 和 Overflow 即可，不需要再进行下一步配置了。
+接下来启动 Gensokyo 和 Overflow 即可。
+
+如果你的 Gensokyo 与 Overflow 在同一机器下运行，推荐安装以下附属插件
++ [LocalFileService](https://github.com/MrXiaoM/LocalFileService) 以**本地文件路径**而非 base64 方式传输图片、语音、视频等媒体消息
 
 ## 配置 反向WS
 在 Overflow 配置文件 `overflow.json` 中
@@ -47,4 +50,7 @@ gensokyo-xxx
 - 将 `ws_address` 的值设为 `["ws://127.0.0.1:端口/"]`，这里的`端口`是上面 Overflow 设置的 `reversed_ws_port`
 - 将 `ws_token` 的值设为 `["令牌"]`，这里的`令牌`是上面 Overflow 设置的 `token`
 
-接下来启动 Gensokyo 和 Overflow 即可，不需要再进行下一步配置了。
+接下来启动 Gensokyo 和 Overflow 即可。
+
+如果你的 Gensokyo 与 Overflow 在同一机器下运行，推荐安装以下附属插件
++ [LocalFileService](https://github.com/MrXiaoM/LocalFileService) 以**本地文件路径**而非 base64 方式传输图片、语音、视频等媒体消息

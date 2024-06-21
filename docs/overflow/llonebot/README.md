@@ -25,7 +25,11 @@ title: LLOnebot
 5. 如果你配置了第二步的 `Access token`，把它填进配置文件的 `token` 里面；如果没有配置，留空即可
 
 ::: tip 成功
-你的配置已完成，启动 Overflow 即可，无需进行下一步配置
+你的配置已完成，启动 Overflow 即可。
+
+如果你的 LLOnebot 与 Overflow 在同一机器下运行，推荐安装以下附属插件
++ [LocalFileService](https://github.com/MrXiaoM/LocalFileService) 以**本地文件路径**而非 base64 方式传输图片、语音、视频等媒体消息
+
 :::
 
 ## 反向 WebSocket
@@ -38,5 +42,9 @@ title: LLOnebot
 6. 如果你配置了第三步的 `token`，把它填进 `Access token` 里面；如果没有配置，留空即可
 
 ::: tip 成功
-你的配置已完成，启动 Overflow 即可，无需进行下一步配置
+你的配置已完成，启动 Overflow 即可。
+
+如果你的 LLOnebot 与 Overflow 在同一机器下运行，推荐安装以下附属插件
++ [LocalFileService](https://github.com/MrXiaoM/LocalFileService) 以**本地文件路径**而非 base64 方式传输图片、语音、视频等媒体消息
+
 :::
