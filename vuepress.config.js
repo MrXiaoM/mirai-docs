@@ -53,8 +53,9 @@ export default defineUserConfig({
         lastUpdated: true,
         breadcrumb: true,
         pageInfo: false,
-        nextLinks: true,
-        prevLinks: true,
+        nextLink: true,
+        prevLink: true,
+        darkmode: "toggle",
     }),
     plugins: [
     ],
