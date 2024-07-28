@@ -5,6 +5,10 @@ description: Overflow + OpenShamrock 在有 Root 环境下的安装教程
 
 本文将介绍在 Mumu 模拟器中安装 Magisk 和 LSPosed，并安装 OpenShamrock 的方法。
 
+::: warning 已失去支持
+事实上，我们更推荐你使用其它更轻量化的 Onebot 实现。
+:::
+
 ::: tip
 前置操作另请参见 [上游文档](mumu.md)。
 :::

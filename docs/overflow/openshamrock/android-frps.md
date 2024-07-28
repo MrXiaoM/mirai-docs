@@ -9,6 +9,10 @@ description: Overflow + OpenShamrock 在 Android 下自建 Frp 服务器进行�
 
 本文将介绍在 Android 中使用 Frps 自建服务器，并内网穿透 OpenShamrock 的主动 WebSocket 端口。
 
+::: warning 已失去支持
+事实上，我们更推荐你使用其它更轻量化的 Onebot 实现。
+:::
+
 ::: tip
 前置操作另请参见 [上游文档](android.md)。
 :::
