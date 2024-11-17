@@ -25,12 +25,6 @@ const sidebar = {
             ]
         },
         {
-            text: "开发实践笔记",
-            children: [
-                "/mirai/notes/wait-next-message",
-            ]
-        },
-        {
             text: "疑难解答",
             link: '/mirai/troubleshoot'
         },
@@ -47,20 +41,6 @@ const sidebar = {
         {
             text: "Overflow",
             link: '/overflow'
-        },
-        {
-            text: "搭配 OpenShamrock",
-            children: [
-                "/overflow/openshamrock",
-                "/overflow/openshamrock/mumu",
-                "/overflow/openshamrock/mumu-magisk-lsposed",
-                "/overflow/openshamrock/mumu-lspatch",
-                "/overflow/openshamrock/android",
-                "/overflow/openshamrock/android-magisk-lsposed",
-                "/overflow/openshamrock/android-lspatch",
-                "/overflow/openshamrock/android-frps",
-                "/overflow/openshamrock/android-chmlfrp"
-            ]
         },
         {
             text: "搭配 Gensokyo",
