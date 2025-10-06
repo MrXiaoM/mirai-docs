@@ -5,6 +5,8 @@ description:
 
 本文档为 [MrXiaoM/Eden](https://github.com/MrXiaoM/Eden) 开发日记。
 
+> 不要联系我询问 QQ 协议相关问题，我只会最基础的 Java 静态逆向，别的没兴趣也没能力研究。
+
 # 各参数位置 in 8983
 
 | 参数 | 类/文件 | 详细位置 |
@@ -37,11 +39,16 @@ var apkSign = cert.GetCertHashString(HashAlgorithmName.MD5).ToLower();
 
 # QUA 格式
 
-`V1_AND_SQ_`+`版本号`+`_`+`版本代号`+`_`+`版本类型`
+`UA版本`+`_`+`平台`+`_`+`应用`+`_`+`版本号`+`_`+`版本代号`+`_`+`版本类型`
 
+* UA版本 目前固定为 `V1`
+* 平台 即系统平台，如 `AND` 代表 安卓 (Android)
+* 应用 当前应用，如 `SQ` 代表 手Q (手机QQ)
 * 版本号 (version) 格式为 `#.#.##`
 * 版本代号 (code) 为 APK 的纯数字版本号
 * 版本类型 `YYB_D` 代表稳定版
 * 版本类型 `HDBM_T` 或其它值代表测试版
 
-除了上述表格中的方法，你还可以在内置浏览器中访问网页 https://ie.icoa.cn/，从 UserAgent 中找到 QUA。
+版本类型通常代表了渠道，例如 `YYB` 是应用宝的拼音首字母缩写。
+
+除了上述表格中的方法，你还可以在内置浏览器中访问网页 `https://ie.icoa.cn/`，从 UserAgent 中找到 QUA。

@@ -6,7 +6,7 @@ description: 高效率 QQ 机器人支持库
 > 如有疑问请先翻阅[疑难解答](/mirai/troubleshoot)。
 
 # Mirai
-[mirai](https://github.com/mamoe/mirai) 是由 [Him188](https://github.com/Him188) 在 2019 年 8 月 7 日 10:14:28 创建仓库，现由 [Mamoe Technologies](https://github.com/mamoe) 维护的高效率 QQ 机器人支持库。
+[mirai](https://github.com/mamoe/mirai) 是由 [Him188](https://github.com/Him188) 在 2019 年 8 月 7 日 10:14:28 创建仓库，现由 [Mamoe Technologies](https://github.com/mamoe) 维护的高效率 QQ 机器人支持库。现已**停止更新**。
 
 [官方文档](https://docs.mirai.mamoe.net/)更具备专业性，但对于初接触的新人而言，或许还是有些无从下手，并且官方有一部分重要文档是写在源码的 [KDoc](https://kdoc.mirai.mamoe.net/) 里的，较为分散。
 
@@ -36,9 +36,3 @@ description: 高效率 QQ 机器人支持库
 2. [开发人员: 准备工作](https://docs.mirai.mamoe.net/Preparations.html)
 3. [开发人员: 配置项目](https://docs.mirai.mamoe.net/ConfiguringProjects.html)
 4. [开发人员: CoreAPI](https://docs.mirai.mamoe.net/CoreAPI.html)
-
-# 已弃用内容
-
-旧文档地址：https://mirai-docs.doomteam.fun/
-
-个人认为我编写的旧文档更像是流水账，对官方文档的简单解释和补充，并且还没有分页。
